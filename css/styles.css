@@ -1,0 +1,102 @@
+.box-shadow {
+	-webkit-box-shadow: 0px 10px 20px 0px rgba(50, 50, 50, 0.52);
+	-moz-box-shadow:    0px 10px 20px 0px rgba(50, 50, 50, 0.52);
+	box-shadow:         0px 10px 20px 0px rgba(50, 50, 50, 0.52)
+}
+#registration_form, #hospital_reg_form, #login_form{
+    padding:20px 50px;
+}
+#hospital_reg_form{
+    margin-top:51px;
+    margin-bottom: 85px;
+}
+#login_form{
+    margin-top:45px;
+    margin-bottom: 76px;
+}
+#registration_form{
+    margin-bottom: 20px;
+}
+#donor_reg_heading,#hospital_reg_heading, #login_heading{
+    padding-bottom: 20px;
+}
+
+#submit,#login{
+    margin-left:35%;
+    color:white;
+    background-color: black;
+    width:auto;
+}
+#login{
+    width:40%;
+    margin-left:30%;
+}
+.error{
+    color:red;
+    display: inline;
+}
+label{
+    display:inline-flex;
+    width:130px;
+}
+input, #gender{
+    width:200px;
+    box-shadow: 5px 0px 10px #888888;
+}
+@media screen and (max-width: 800px) {
+
+    input,#gender {
+      width:100%;
+    }
+    label{
+        width:50px;
+    }
+    #submit, #login{
+        vertical-align: middle;
+        margin-left: auto;
+        width:auto;
+    }
+}
+#new_user{
+    padding-left: 80px;
+}
+form a{
+    text-decoration: none;
+    color:black;
+    
+}
+form{
+    font-weight: 500;
+}
+form a:hover{
+    color:#b22222;
+}
+nav a{
+    color:white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: large;
+}
+nav a:hover{
+    color:black;
+}
+nav{
+    position: fixed;
+    top:0;
+    width:100%;
+}
+nav, footer{
+    color:white;
+    background-color: #b22222;
+    height:50px;
+    padding-left:20px;
+    padding-top:10px;
+}
+#forgot_password{
+    padding-left: 110px;
+}
+#submit:hover, #login:hover{
+    background-color: transparent;
+    color:#b22222;
+}
+
