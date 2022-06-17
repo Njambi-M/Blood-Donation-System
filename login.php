@@ -39,7 +39,18 @@
                             <input type = 'password' name = 'password' id = 'password' required autocomplete = 'off'>                            
                             <br/><br/>
                             <input id = 'login'type = 'submit' name = 'login_btn' value = 'Login'><br/><br>
-                            <a href = ''><p class = 'password' id = 'new_user'>New user? Create account</p></a>
+                            
+                            <div class="dropdown">
+                                <!-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Dropdown link
+                                </a> -->
+                                <a href = '' class = 'dropdown-toggle password' id = 'new_user' data-bs-toggle="dropdown" aria-expanded="false">New user? Create account</a>
+
+                                <ul class="dropdown-menu" aria-labelledby="new_user">
+                                    <li><a id = 'donor_reg'class="dropdown-item" href="#">Donor</a></li>
+                                    <li><a id = 'hospital_reg' class="dropdown-item" href="#">Hospital</a></li>
+                                </ul>
+                            </div>
                             <a href = ''><p class = 'password' id = 'forgot_password'>Forgot password?</p></a>
                         </form>
                       
@@ -75,11 +86,24 @@
                             }
                         });
                     });
-                    $("#new_user").click(function(form){
+                    $("#donor_reg").click(function(form){
                         form.preventDefault();
                         $.ajax({
                             success:function(data){
                                 window.location.href = "donor_registration.php";
+                                exit();
+                            },
+                            error:function(req, textStatus, errorThrown){
+                                window.location.href="login.php";
+                                exit();
+                            }
+                        });
+                    });
+                    $("#hospital_reg").click(function(form){
+                        form.preventDefault();
+                        $.ajax({
+                            success:function(data){
+                                window.location.href = "hospital_registration.php";
                                 exit();
                             },
                             error:function(req, textStatus, errorThrown){
