@@ -15,7 +15,7 @@
 
         if($connection->query($sql))
         {
-            header('Location:../login.php');
+            echo "<script>window.location.href='../login.php';alert('Registration successfull.'); </script>";
         }
         else{
             header("location: ../donor_registration.php");
@@ -32,7 +32,7 @@
 
         if($connection->query($sql_hospital))
         {
-            header('Location:../login.php');
+            echo "<script>window.location.href='../login.php';alert('Registration successfull.'); </script>";
         }
         else{
             header("location: ../hospital_registration.php");
