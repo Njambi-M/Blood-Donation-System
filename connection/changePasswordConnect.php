@@ -19,7 +19,7 @@ if (mysqli_num_rows($result) > 0)
 
     if($connection->query($sql_update))
     {
-        header("location: ../login.php");
+        echo "<script>window.location.href='../login.php';alert('Password changed successfully. Use your new password to login.'); </script>";
     }
     else{
         header("location: ../forgot_password.php");
@@ -34,7 +34,7 @@ else if(mysqli_num_rows($result_hospital) > 0){
 
     if($connection->query($sql_update_hosp))
     {
-        header("location: ../login.php");
+        echo "<script>window.location.href='../login.php';alert('Password changed successfully. Use your new password to login.'); </script>";
     }
     else{
         header("location: ../forgot_password.php");
