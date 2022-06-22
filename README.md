@@ -1,0 +1,1 @@
+This project is about blood donation. It allows donors to register and view available blood drives and receive alerts about the same. Hospitals can in turn register to schedule the blood drives.
