@@ -52,7 +52,7 @@ $row=mysqli_fetch_array($result);
                     <div class="col"></div>
                     <div class="col-md-auto">
                    
-                        <form class = 'box-shadow' id = 'edit_appointment_form' method = 'POST' action = '../connection/HospitalAppointment.php' >
+                        <form class = 'box-shadow' id = 'edit_appointment_form' method = 'POST' action = '../connection/HospitalAppointment.php?appointment_id=<?php echo $id?>' >
                             <h4 id = 'drive_scheduling_heading'>Hospital Appointment Booking</h4>
                             <label>Hospital</label>
                             

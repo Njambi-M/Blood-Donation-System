@@ -22,12 +22,13 @@ if(isset($_POST['bookApp'])){
         }
 }
 if(isset($_POST['update'])){
+    $appointment_id=$_GET['appointment_id'];
     $hospital_id= $_POST['hospital'];
     $date= $_POST['app_date'];
     $time= $_POST['app_time'];
 
 
-        $sqlupdate = "UPDATE hospital_appointment set hospital_id= '$hospital_id', `date`= '$date', `time`='$time'";
+        $sqlupdate = "UPDATE hospital_appointment set hospital_id= '$hospital_id', `date`= '$date', `time`='$time' WHERE appointment_id=$appointment_id";
         
         if ($connection->query($sqlupdate))
         {

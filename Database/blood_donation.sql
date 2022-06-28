@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2022 at 01:45 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.0
+-- Generation Time: Jun 28, 2022 at 09:30 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,7 +41,7 @@ CREATE TABLE `blood_drive` (
 --
 
 INSERT INTO `blood_drive` (`blood_drive_id`, `blood_drive_name`, `blood_drive_location`, `date_from`, `date_to`, `hospital_id`) VALUES
-(2, 'Meridian Drive', 'Uhuru Gardens', '2022-06-27 08:30:00', '2022-06-29 18:00:00', 2);
+(2, 'Meridian Drive', 'Uhuru Gardens', '2022-07-19 08:30:00', '2022-07-26 18:00:00', 2);
 
 -- --------------------------------------------------------
 
@@ -86,7 +86,10 @@ CREATE TABLE `drive_booking` (
 --
 
 INSERT INTO `drive_booking` (`drive_booking_id`, `donor_id`, `blood_drive_id`) VALUES
-(1, 1, 2);
+(1, 1, 2),
+(2, 1, 2),
+(3, 1, 2),
+(4, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -109,6 +112,30 @@ CREATE TABLE `hospital` (
 INSERT INTO `hospital` (`hospital_id`, `hospital_name`, `hospital_email`, `hospital_password`, `hospital_phoneNo`) VALUES
 (1, 'Nairobi West', 'nairobiwest@hospital.com', '$2y$10$NjVRS5AAfKsa9AN57gxqgOOX997zsFSd41zMQRmbTUUqm7W/qeQCy', 2020192492),
 (2, 'Equator Meridian', 'meridian@hospital.com', '$2y$10$Ed1fkpm2q7SNgNw/rOnXu.Hz0ZL.Sjf4RCLxUYVvPQ42xbq0CBbUi', 2020908980);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hospital_appointment`
+--
+
+CREATE TABLE `hospital_appointment` (
+  `appointment_id` int(11) NOT NULL,
+  `donor_id` int(11) NOT NULL,
+  `hospital_id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL,
+  `status` varchar(15) NOT NULL DEFAULT 'not yet seen'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `hospital_appointment`
+--
+
+INSERT INTO `hospital_appointment` (`appointment_id`, `donor_id`, `hospital_id`, `date`, `time`, `status`) VALUES
+(1, 1, 1, '2022-07-26', '12:30:00', 'not yet seen'),
+(7, 2, 1, '2022-06-30', '11:40:00', 'not yet seen'),
+(8, 3, 2, '2022-06-28', '15:00:00', 'seen');
 
 --
 -- Indexes for dumped tables
@@ -142,6 +169,14 @@ ALTER TABLE `hospital`
   ADD PRIMARY KEY (`hospital_id`);
 
 --
+-- Indexes for table `hospital_appointment`
+--
+ALTER TABLE `hospital_appointment`
+  ADD PRIMARY KEY (`appointment_id`),
+  ADD KEY `donor_id` (`donor_id`),
+  ADD KEY `hospital_id` (`hospital_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -161,13 +196,19 @@ ALTER TABLE `donor`
 -- AUTO_INCREMENT for table `drive_booking`
 --
 ALTER TABLE `drive_booking`
-  MODIFY `drive_booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `drive_booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `hospital`
 --
 ALTER TABLE `hospital`
   MODIFY `hospital_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `hospital_appointment`
+--
+ALTER TABLE `hospital_appointment`
+  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -185,6 +226,13 @@ ALTER TABLE `blood_drive`
 ALTER TABLE `drive_booking`
   ADD CONSTRAINT `drive_booking_ibfk_1` FOREIGN KEY (`donor_id`) REFERENCES `donor` (`donor_id`),
   ADD CONSTRAINT `drive_booking_ibfk_2` FOREIGN KEY (`blood_drive_id`) REFERENCES `blood_drive` (`blood_drive_id`);
+
+--
+-- Constraints for table `hospital_appointment`
+--
+ALTER TABLE `hospital_appointment`
+  ADD CONSTRAINT `donor_id` FOREIGN KEY (`donor_id`) REFERENCES `donor` (`donor_id`),
+  ADD CONSTRAINT `hospital_id` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`hospital_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
