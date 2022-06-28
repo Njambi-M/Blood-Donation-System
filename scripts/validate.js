@@ -30,6 +30,31 @@ $(document).ready(function() {
 			date_of_birth: 'This field is required!'
 		}
 	});
+	$('#drive_scheduling_form').validate({
+		rules: {
+			drive_name: 'required',
+		    drive_location: 'required',
+			date_from: 'required',
+			date_to: {greaterThan: '#date_from'}
+			
+		},
+		messages: {
+		    drive_name: 'This field is required!',
+		    drive_location: 'This field is required!',
+		    date_from: 'Please select a date that is greater than today!',
+			date_to: 'Please select a date that is greater than or equal to start date!'
+		}
+	});
+	jQuery.validator.addMethod("greaterThan", 
+	function(value, element, params) {
+
+		if (!/Invalid|NaN/.test(new Date(value))) {
+			return new Date(value) >= new Date($(params).val());
+		}
+
+		return isNaN(value) && isNaN($(params).val()) || (Number(value) > Number($(params).val())); 
+	},'Please select a date greater or equal to start date');
+
 	$('#hospital_reg_form').validate({
 		rules: {
 			hospital_name: 'required',

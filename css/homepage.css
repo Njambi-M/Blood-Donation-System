@@ -12,13 +12,10 @@ li a{
 h1,h2,h4{
     font-family: 'Montserrat', sans-serif;
 }
-.logo{
-    float:left;
-}
 .fixed-navbar{
     width: 100%;
     overflow: hidden;
-    background: white;
+    background: #B22222;
     /* opacity: 1; */
     position: fixed;
     top: 0;
@@ -45,13 +42,13 @@ h1,h2,h4{
 .nav-links li a{
 	text-decoration: none;
 	text-align: center;
-	color: black;
+	color: white;
 	margin: 0 7px;
 	padding: 14px, 16px;
 	transition: 0.3s ease;
 }
 .nav-links li a:hover{
-	color: #B22222;
+	color:black;
 }
 .dropdown-menu{
     display: block;

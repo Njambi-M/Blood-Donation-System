@@ -16,11 +16,18 @@
     <body>
         <header>     
             <nav>
-                <a href="#">HOME</a>
-                <a style = "float: right;margin-right: 20px;"href = ""><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+            <img id="logo" src="images/Logo.png" width="80"height="80"> 
+            <a href="homepage.php" style="margin-left:15px;">Home</a> 
+
+                <a href = ''style = "float: right;margin-right: 20px; padding-top:20px;" class = 'dropdown-toggle password' id = 'user' data-bs-toggle="dropdown"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                   <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                 </svg>&nbsp;<?php echo $_SESSION['name']??null;?></a>
+
+               <ul class="dropdown-menu" aria-labelledby="user">
+                    <li><a id = 'user_profile'class="dropdown-item" href="#">My Profile</a></li>
+                    <li><a id = 'log_out' class="dropdown-item" href="connection/logout.php">Log Out</a></li>
+                </ul>
             </nav>
         </header>
         <main>
@@ -28,7 +35,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col"></div>
-                    <div class="col-5">
+                    <div class="col-md-auto">
                         <form class = 'box-shadow' id = 'login_form'>
                             <p id = 'message'></p>
                             <h5 id = 'login_heading'>Welcome. Please Login to proceed!</h5>
@@ -41,9 +48,6 @@
                             <input id = 'login'type = 'submit' name = 'login_btn' value = 'Login'><br/><br>
                             
                             <div class="dropdown">
-                                <!-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown link
-                                </a> -->
                                 <a href = '' class = 'dropdown-toggle password' id = 'new_user' data-bs-toggle="dropdown" aria-expanded="false">New user? Create account</a>
 
                                 <ul class="dropdown-menu" aria-labelledby="new_user">
@@ -73,11 +77,10 @@
                         
                             success:function(data){
                                 if(data == 1){
-                                    window.location.href="donor_registration.php";
+                                    window.location.href="blood_drive/viewDrives.php";
                                 }else if(data == 2){
-                                    window.location.href="hospital_registration.php";
+                                    window.location.href="blood_drive/drive_scheduling.php";
                                 }
-                                // window.location.href="donor_registration.php";
                                 document.getElementById("login_form").reset();
                             },
                             error:function(req, textStatus, errorThrown){

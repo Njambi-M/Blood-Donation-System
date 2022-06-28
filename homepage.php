@@ -20,14 +20,14 @@
             <ul class="nav-links">
                 <li id="nav-pages"> <a href="homepage.php" style="color:#B22222;">Home</a> </li>
                 <li id="nav-pages" class="dropdown">
-                            <a href="#" class="dropdown-toggle"  data-bs-toggle="dropdown">Register</a>
-                            <ul class="dropdown-menu">
-                                <li class="donor"><a href="donor_registration.php">Donor</a></li>
-                                <li class="hosp"><a href="hospital_registration.php">Hospital</a></li>
-                            </ul>
-                        </li>
+                  <a href="#" class="dropdown-toggle"  data-bs-toggle="dropdown">Register</a>
+                  <ul class="dropdown-menu">
+                      <li class="donor"><a href="donor_registration.php">Donor</a></li>
+                      <li class="hosp"><a href="hospital_registration.php">Hospital</a></li>
+                  </ul>
+              </li>
             <li id="nav-pages"><a href="login.php">Login</a></li>
-            <li id="nav-pages">    <a href="#">Blood Drives</a> </li>
+            <li id="nav-pages">    <a href="blood_drive/viewDrives.php">Blood Drives</a> </li>
               <li id="nav-pages">    <a href="#">More Info</a> </li>
                 <li id="nav-pages">    <a href="#" >Contact Us</a> </li>
             </ul>
@@ -67,7 +67,6 @@
       </div>
       <div class="carousel-item">
       <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="images/headline2.png" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" /></svg>
-        <!-- <img src="images/cover.jpg" style="height: 100%; width: 100%; "> -->
 
         <div class="container">
           <div class="carousel-caption text-end">

@@ -3,8 +3,9 @@
 	-moz-box-shadow:    0px 10px 20px 0px rgba(50, 50, 50, 0.52);
 	box-shadow:         0px 10px 20px 0px rgba(50, 50, 50, 0.52)
 }
-#registration_form, #hospital_reg_form, #login_form{
+form{
     padding:20px 50px;
+    font-weight: 500;
 }
 #hospital_reg_form{
     margin-top:51px;
@@ -17,10 +18,57 @@
 #registration_form{
     margin-bottom: 20px;
 }
-#donor_reg_heading,#hospital_reg_heading, #login_heading{
+#drive_scheduling_form{
+    margin-top:37px;
+    margin-bottom: 55px;
+}
+#drivehospitalview{
+    margin-top:20px;
+    margin-bottom:275px;
+    padding:10px;
+    padding-right:40px;
+}
+#driveview{
+    padding: 20px;
+    margin-bottom:112px;
+}
+#driveview:hover{
+    border:solid;
+}
+#donor_reg_heading,#hospital_reg_heading, #login_heading,#drive_scheduling_heading{
     padding-bottom: 20px;
 }
+#edit_appointment_form, #book_appointment_form{
+    margin-top:100px;
+}
 
+table{
+    width:100%;
+}
+tbody tr:hover{
+    background-color: lightgrey;
+}
+table a{
+    color:black;
+}
+table a:hover{
+    color:#b22222;
+}
+table, th, td{
+    text-align:center;
+    height: 70px;
+}
+th,td{
+    padding-left:10px;
+    padding-right:10px;
+}
+thead{
+    height:60px;
+}
+.container_drive_view{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
 #submit,#login{
     margin-left:35%;
     color:white;
@@ -33,15 +81,18 @@
 }
 .error{
     color:red;
-    display: inline;
+    display: inline-flex;
 }
 label{
     display:inline-flex;
-    width:130px;
+    width:150px;
 }
 input, #gender{
     width:200px;
     box-shadow: 5px 0px 10px #888888;
+}
+form#driveview{
+    width:10px
 }
 @media screen and (max-width: 800px) {
 
@@ -57,6 +108,7 @@ input, #gender{
         width:auto;
     }
 }
+
 #new_user{
     padding-left: 80px;
 }
@@ -64,9 +116,6 @@ form a{
     text-decoration: none;
     color:black;
     
-}
-form{
-    font-weight: 500;
 }
 form a:hover{
     color:#b22222;
@@ -84,13 +133,21 @@ nav{
     position: fixed;
     top:0;
     width:100%;
+    border-bottom: solid whitesmoke 5px;
+
 }
 nav, footer{
     color:white;
-    background-color: #b22222;
+    background-color: #b22222; 
+}
+footer{
     height:50px;
     padding-left:20px;
     padding-top:10px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }
 #forgot_password{
     padding-left: 110px;
@@ -100,3 +157,6 @@ nav, footer{
     color:#b22222;
 }
 
+#logo{
+    padding: 0;
+}

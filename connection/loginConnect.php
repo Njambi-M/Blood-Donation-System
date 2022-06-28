@@ -18,11 +18,12 @@ if (mysqli_num_rows($result) > 0)
        $donor_password = $row['donor_password'];
        $fname = $row['first_name'];
        $lname = $row['last_name'];
+       $donor_id = $row['donor_id'];
     }
 
     if(password_verify($password, $donor_password)){
         $_SESSION['name'] = $fname.' '.$lname;
-        // header('Location: ../login.php');
+        $_SESSION['id']=$donor_id;
         echo 1;
     }
     else{
@@ -36,11 +37,12 @@ else if(mysqli_num_rows($result_hospital) > 0){
     {
        $hospital_password = $row['hospital_password'];
        $hospital_name = $row['hospital_name'];
+       $hospital_id = $row['hospital_id'];
     }
 
     if(password_verify($password, $hospital_password)){
         $_SESSION['name'] = $hospital_name;
-        // header('Location: ../login.php');
+        $_SESSION['id'] = $hospital_id;
         echo 2;
     }
     else{
