@@ -1,3 +1,7 @@
+<?php
+session_start()??null;
+?>
+
 <!DOCTYPE HTML>
 <head>
 <title>Blood Aid</title>
@@ -17,20 +21,18 @@
 <body>
     <nav class="fixed-navbar">
     <img id="logo" src="images/Logo.png" width="100"height="100"> 
-            <ul class="nav-links">
-                <li id="nav-pages"> <a href="homepage.php" style="color:#B22222;">Home</a> </li>
-                <li id="nav-pages" class="dropdown">
-                  <a href="#" class="dropdown-toggle"  data-bs-toggle="dropdown">Register</a>
+              <div class="nav-links">
+                <a id="nav-pages" href="homepage.php" style="color:black;">Home</a>
+                  <a id="nav-pages" href="#" class="dropdown-toggle"  data-bs-toggle="dropdown">Register</a>
                   <ul class="dropdown-menu">
-                      <li class="donor"><a href="donor_registration.php">Donor</a></li>
-                      <li class="hosp"><a href="hospital_registration.php">Hospital</a></li>
+                      <li><a class="dropdown-item" href="donor_registration.php">Donor</a></li>
+                      <li><a class="dropdown-item" href="hospital_registration.php">Hospital</a></li>
                   </ul>
-              </li>
-            <li id="nav-pages"><a href="login.php">Login</a></li>
-            <li id="nav-pages">    <a href="blood_drive/viewDrives.php">Blood Drives</a> </li>
-              <li id="nav-pages">    <a href="#">More Info</a> </li>
-                <li id="nav-pages">    <a href="#" >Contact Us</a> </li>
-            </ul>
+              <a id="nav-pages" href="login.php">Login</a>
+              <a id="nav-pages" href="blood_drive/viewDrives.php">Blood Drives</a> 
+              <a id="nav-pages" href="#">More Info</a>
+              <a id="nav-pages" href="#" >Contact Us</a>
+</div>  
     </nav>
 
     <div class="main">

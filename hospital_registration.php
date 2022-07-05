@@ -12,6 +12,8 @@ session_start()??null;
         <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
         <script type="text/javascript" src = "scripts/validate.js"></script>
         <link href = "css/styles.css" rel = "stylesheet">
+        <link rel="shortcut icon" href="images\Logo.png" type="image/x-icon">
+
        
     </head>
     <body>

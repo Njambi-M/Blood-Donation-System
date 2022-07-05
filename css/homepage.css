@@ -14,7 +14,6 @@ h1,h2,h4{
 }
 .fixed-navbar{
     width: 100%;
-    overflow: hidden;
     background: #B22222;
     /* opacity: 1; */
     position: fixed;
@@ -36,10 +35,7 @@ h1,h2,h4{
     margin-right: 30px;
 	padding-right: 20px;
 }
-.nav-links li{
-	display: inline-block;
-}
-.nav-links li a{
+.nav-links a{
 	text-decoration: none;
 	text-align: center;
 	color: white;
@@ -50,18 +46,12 @@ h1,h2,h4{
 .nav-links li a:hover{
 	color:black;
 }
-.dropdown-menu{
-    display: block;
-    border:solid black;
+.dropdown-menu li a{
+    color:black;
 
 }
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+.dropdown-menu a:hover{
+   color:#B22222;
   }
   .carousel {
     margin-bottom: 4rem;

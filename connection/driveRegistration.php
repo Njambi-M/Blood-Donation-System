@@ -20,7 +20,7 @@ if(isset($_POST['register'])){
         }
     }
     else{
-        echo '<script>alert("Please login then register for the drive"); window.location.href="../login.php";
+        echo '<script>alert("Please login first then register for the drive"); window.location.href="../login.php";
         </script>';
     }
    

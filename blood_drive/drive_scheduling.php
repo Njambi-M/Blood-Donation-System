@@ -13,6 +13,8 @@ session_start()??null;
         <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
         <script type="text/javascript" src = "../scripts/validate.js"></script>
         <link href = "../css/styles.css" rel = "stylesheet">
+        <link rel="shortcut icon" href="..\images\Logo.png" type="image/x-icon">
+
        
     </head>
     <body>
@@ -20,7 +22,7 @@ session_start()??null;
         <header>     
             <nav>
             <img id="logo" src="../images/Logo.png" width="80"height="80"> 
-            <a href="../homepage.php" style="margin-left:15px;">Home</a> 
+            <a href="../hospital_page.php" style="margin-left:15px;">Home</a> 
 
                 <a href = ''style = "float: right;margin-right: 20px; padding-top:20px;" class = 'dropdown-toggle password' id = 'user' data-bs-toggle="dropdown"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -28,7 +30,7 @@ session_start()??null;
                 </svg>&nbsp;<?php echo $_SESSION['name']??null;?></a>
 
                <ul class="dropdown-menu" aria-labelledby="user">
-                    <li><a id = 'user_profile'class="dropdown-item" href="#">My Profile</a></li>
+                    <li><a id = 'user_profile'class="dropdown-item" href="../hospital/hospital_profile.php">My Profile</a></li>
                     <li><a id = 'log_out' class="dropdown-item" href="../connection/logout.php">Log Out</a></li>
                 </ul>
             </nav>

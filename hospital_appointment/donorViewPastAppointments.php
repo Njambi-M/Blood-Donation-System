@@ -4,19 +4,17 @@ session_start()??null;
 include('../connection/connect.php');
 
 $id = $_SESSION['id']??null;
-$appointment_id=$_GET['appointment_id']??null;
+$current_date=date('Y-m-d');
 
-
-$sql = "SELECT hospital.hospital_name, hospital_appointment.* FROM hospital_appointment LEFT JOIN hospital ON hospital.hospital_id = hospital_appointment.hospital_id WHERE appointment_id = $appointment_id ";
+$sql = "SELECT hospital.hospital_name, hospital_appointment.* FROM hospital_appointment LEFT JOIN hospital ON hospital.hospital_id = hospital_appointment.hospital_id WHERE donor_id = $id AND `status`= 'seen' ";
 
 $result = $connection->query($sql);
-$row=mysqli_fetch_array($result);
-
+    
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Hospital Appointment Booking</title>
+        <title>View Appointments</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -24,15 +22,16 @@ $row=mysqli_fetch_array($result);
         <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
         <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
         <link href = "../css/styles.css" rel = "stylesheet">
-        <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
+        <link rel="shortcut icon" href="..\images\Logo.png" type="image/x-icon">
         <script type="text/javascript" src = "../scripts/sidebar.js"></script>
 
+
+        
        
     </head>
     <body>
-    <script src = 'https://cdn.jsdelivr.net/npm/jquery-datetimepicker@2.5.21/build/jquery.datetimepicker.full.min.js'></script>
         <header>     
-            <nav>
+        <nav>
             <img id="logo" src="../images/Logo.png" width="80"height="80"> 
             <a href="../homepage.php" style="margin-left:15px;">Home</a> 
 
@@ -47,7 +46,7 @@ $row=mysqli_fetch_array($result);
                 </ul>
             </nav>
         </header>
-           <main class="donor_land">
+        <main class="donor_land">
 
 <div class="flex-shrink-1 p-3 bg-white" id="dash">
 <a href="../donor_page.php" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
@@ -102,47 +101,53 @@ $row=mysqli_fetch_array($result);
 </li>
 </ul>
 </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col"></div>
-                    <div class="col-md-auto">
-                   
-                        <form class = 'box-shadow' id = 'edit_appointment_form' method = 'POST' action = '../connection/HospitalAppointment.php?appointment_id=<?php echo $appointment_id?>' >
-                            <h4 id = 'hospital_edit_appointment_heading'>Hospital Appointment Booking</h4>
-                            <label>Hospital</label>
+        <div class="container">
+        <h2 style = 'text-align:center; margin-top:50px;'> Past Appointments</h2>
+        <div class="cards-data">
+       
+        <?php
+                    if (mysqli_num_rows($result) > 0)
+                    {
+                        while($row = mysqli_fetch_assoc($result))
+                        {
+                            $appointment_id = $row['appointment_id'];
+                            ?>
 
-                            
-                          <?php
+        
+				<div class="row">
+                <div class="col-md-auto"> 
+					<div class="card" style="margin-bottom:50px;">
+                    <form action="editAppointment.php?appointment_id=<?php echo $appointment_id;?>" method="post" style='margin-top:10px;'>
 
-                        $sql1 = "SELECT hospital_id,hospital_name FROM hospital"; 
-
-                        $result1 = $connection->query($sql1);
-                        if(mysqli_num_rows($result1) > 0){  
-                          echo"<select id='hospital' name='hospital' value=' ". $row['hospital_id']. "'>";
-                        while($row1 = mysqli_fetch_assoc($result1))
-                         { 
-                              echo  "<option value='" .$row1['hospital_id']."'> ".$row1['hospital_name']. "  </option>" ; 
-                                 }
-                                }
-?>
-                            </select> 
-                            <br/><br/>
-                            <label>Date</label>
-                            <input type = 'date' name = 'app_date' id = 'app_date' value='<?php echo $row['date']?>' required autocomplete = 'off'>
-                            <br/><br/>
-                            <label>Time</label>
-                            <input type="time" id="app_time" name="app_time" value='<?php echo $row['time']?>'>
-                            <br/><br/>
-                            
-
-                            <br/><br/>
-                            <input id = 'submit' type = 'submit' name = 'update' value = 'Update'>
+						<div class="card-body"> 
+								<div>
+                                <h5 class="header-title mt-0 mb-4"><strong>Appointment ID:</strong> <?php echo $row['appointment_id']; ?></h5>
+                                <h5 class="header-title mt-0 mb-4"><strong>Hospital Name: </strong><?php echo $row['hospital_name']; ?></h5>
+                                <h5 class="header-title mt-0 mb-4"><strong>Date: </strong><?php echo $row['date']; ?></h5>
+                                <h5 class="header-title mt-0 mb-4"><strong>Time: </strong><?php echo $row['time']; ?></h5>
+								</div>
+                                <div style = 'text-align:center'>
+                                <a href = ""><input style = 'color:white;background-color:black;width:auto;' type = 'submit' value = 'Edit' name = 'edit'></a>
+                                <!-- <a href = "../connection/cancelAppointment.php?appointment_id=<?php echo $appointment_id;?>"><input style = 'color:white;background-color:black;width:auto;margin-left:15px;' type = 'submit' value = 'Cancel' name = 'cancel'></a> -->
+                            </div>
                         </form>
-                    </div>
-                    <div class="col"></div>
+						</div>
+                        </div>
+					</div>
+
+                          <?php 
+                        }
+                    }else{
+                        echo "<div class = 'col'></div><div style = 'text-align:center; margin-top: 20px;'class = 'col-md-auto'><h5>You have not been to any appointments</h5></div><div class = 'col'></div>";
+                    }
+                ?>
+
+
+
                 </div>
-            </div>
-           
+                                    </div>
+                </div>
+            
         </main>
         <footer>
             <p>&#169; Copyright. All Rights reserved</p>

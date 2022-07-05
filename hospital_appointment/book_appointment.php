@@ -20,6 +20,10 @@ $result = $connection->query($sql);
         <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
         <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
         <link href = "../css/styles.css" rel = "stylesheet">
+        <script src = '../scripts/date.js'></script>
+        <link rel="shortcut icon" href="images\Logo.png" type="image/x-icon">
+        <script type="text/javascript" src = "../scripts/sidebar.js"></script>
+
        
     </head>
     <body>
@@ -40,9 +44,61 @@ $result = $connection->query($sql);
                 </ul>
             </nav>
         </header>
-        <main>
-            
-            <br><br><br>
+          <main class="donor_land">
+
+        <div class="flex-shrink-1 p-3 bg-white" id="dash">
+    <a href="../donor_page.php" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+      <span class="fs-5 fw-semibold">Dashboard</span>
+    </a>
+    <ul class="list-unstyled ps-0">
+        <li class="mb-1">
+    
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#donate-collapse" aria-expanded="false">
+          Donate
+        </button>
+        <div class="collapse" id="donate-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="../blood_drive/viewDrives.php" class="link-dark d-inline-flex text-decoration-none rounded">Register for Blood Drives</a></li>
+            <li><a href="book_appointment.php" class="link-dark d-inline-flex text-decoration-none rounded">Book Hospital Appointment </a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#appointment-collapse" aria-expanded="false">
+          Appointments
+        </button>
+        <div class="collapse" id="appointment-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="donorViewAppointments.php" class="link-dark d-inline-flex text-decoration-none rounded">Upcoming Appointments</a></li>
+            <li><a href="donorViewPastAppointments.php" class="link-dark d-inline-flex text-decoration-none rounded">Past Appointments</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#drive-collapse" aria-expanded="false">
+          Blood Drives
+        </button>
+        <div class="collapse" id="drive-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="../blood_drive/viewDrives.php" class="link-dark d-inline-flex text-decoration-none rounded">View Upcoming Drives</a></li>
+            <li><a href="../blood_drive/driveDonorView.php" class="link-dark d-inline-flex text-decoration-none rounded">View Registered Drives</a></li>
+            <li><a href="../blood_drive/pastDriveDonorView.php" class="link-dark d-inline-flex text-decoration-none rounded">View Attended Drives</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#donations-collapse" aria-expanded="false">
+          Blood Donations
+        </button>
+        <div class="collapse" id="donations-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">View Blood Details</a></li>
+            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">View Test Results</a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
             <div class="container">
                 <div class="row">
                     <div class="col"></div>
@@ -56,14 +112,14 @@ $result = $connection->query($sql);
 
                                 echo "<select id='hospital' name='hospital'>" ;
                          
-                         while($row = mysqli_fetch_assoc($result))
-                         { 
-                              echo  "<option value='" .$row['hospital_id']."'> ".$row['hospital_name']. "  </option>" ; 
-                                 }
-                                }else{ 
+                                    while($row = mysqli_fetch_assoc($result))
+                                    { 
+                                        echo  "<option value='" .$row['hospital_id']."'> ".$row['hospital_name']. "  </option>" ; 
+                                    }
+                            }else{ 
                                     echo "<div class = 'col'></div><div style = 'text-align:center; margin-top: 20px;margin-bottom: 371px'class = 'col-md-auto'><h5>No hospitals are currently available</h5></div><div class = 'col'></div>";
                                 }
-                               echo "</select>";    ?>
+                            echo "</select>";    ?>
                             <br/><br/>
                             <label>Date</label>
                             <input type = 'date' name = 'app_date' id = 'app_date' required>

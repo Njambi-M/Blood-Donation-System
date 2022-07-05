@@ -28,4 +28,6 @@ $(function(){
     var maxDate = year + '-' + month + '-' + day;
     $('#date_from').attr('min', maxDate);
     $('#date_to').attr('min', maxDate);
+    $('#app_date').attr('min', maxDate);
+
 });

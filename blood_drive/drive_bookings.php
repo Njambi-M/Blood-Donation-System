@@ -4,24 +4,27 @@ session_start()??null;
 include('../connection/connect.php');
 
 $id = $_SESSION['id']??null;
+$drive_id = $_GET['id']??null;
 
-$sql = "SELECT donor.donor_id, donor.first_name, donor.last_name, donor.donor_phoneNo, hospital_appointment.*
- FROM hospital_appointment LEFT JOIN donor ON donor.donor_id = hospital_appointment.donor_id WHERE hospital_id= $id AND `status` = 'seen' ORDER BY `date`, `time` ";
+$sql = "SELECT drive_booking.drive_booking_id, drive_booking.blood_drive_id,blood_drive.blood_drive_name, donor.first_name,donor.last_name FROM drive_booking,blood_drive,donor WHERE drive_booking.blood_drive_id
+IN('$drive_id') AND blood_drive.blood_drive_id = drive_booking.blood_drive_id AND drive_booking.donor_id = donor.donor_id";
+
 $result = $connection->query($sql);
     
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Booked Appointments</title>
+        <title>Blood Drive Bookings</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <link href = "https://code.jquery.com/ui/1.10.4/themes/blitzer/jquery-ui.css" rel = "stylesheet">
         <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
         <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+        <script type="text/javascript" src = "../scripts/validate.js"></script>
         <link href = "../css/styles.css" rel = "stylesheet">
-        <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
+        <link rel="shortcut icon" href="..\images\Logo.png" type="image/x-icon">
 
        
     </head>
@@ -42,12 +45,16 @@ $result = $connection->query($sql);
                 </ul>
             </nav>
         </header>
+        <a href = ''><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>Back
+        </a>
         <main>
-            <br><br><br>
+            <div style ='margin-top:50px'></div>
             <div class="container">
                 <div class="row">
                     <div class="col"></div>
-                    <div id = 'confirmedAppointments'class="col-md-auto box-shadow">
+                    <div id = 'drivehospitalview'class="col-md-auto box-shadow">
                                 
                         <?php
                         if (mysqli_num_rows($result) > 0)
@@ -55,44 +62,36 @@ $result = $connection->query($sql);
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>Appointment ID</th>
-                                        <th>Donor ID</th>
+                                        <th>Drive Booking ID</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
-                                        <th>Phone Number</th>
-                                        <th>Date of appointment</th>
-                                        <th>Scheduled Time</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                        
-                                        <th></th>
+                                        <th>Blood Drive ID</th>
+                                        <th>Blood Drive Name</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <tr><?php
                             while($row = mysqli_fetch_assoc($result))
                             {
-
-                                echo "<td>".$row['appointment_id']."</td>";
-                                echo "<td>".$row['donor_id']."</td>";
-                                echo "<td>".$row['first_name']."</td>";
-                                echo "<td>".$row['last_name']."</td>";
-                                echo "<td>".$row['donor_phoneNo']."</td>";
-                                echo "<td>".$row['date']."</td>";
-                                echo "<td>".$row['time']."</td>";
-                                echo "<td>".$row['status']."</td>";
-                            
-                                    
-                                echo "<td><a id='buttonconfirm' class='btn btn-light' href=../donate/donationDetails.php?donor_id=" .$row['donor_id']. ">Enter Eligibility Details</a>" . "</td>";
-                                ?>
-                                </tr>
-                                <?php
+                                $drive_id = $row['blood_drive_id'];
+                                echo 
+                                   "
+                                    <td>".$row['drive_booking_id']."</td>
+                                    <td>".$row['first_name']."</td>
+                                    <td>".$row['last_name']."</td>
+                                    <td>".$drive_id."</td>
+                                    <td>".$row['blood_drive_name']."</td>
+                                </tr>";
+                              
                             }?>
                         </tbody>
-                        </table><br/>
+                        </table><br/><div style = 'text-align:center'>
+                            <a href = 'hospital_drive.php'><button class = 'btn btn-primary'>Back</button></a>
+                            <a href = '../hospital_page.php'><button class = 'btn btn-primary'>Done</button></a>
+                        </div>
                         <?php
                         }else {
-                           ?><script>alert('No appointments have been confirmed');window.location.href = '../hospital_page.php';</script>
+                           ?><script>alert('No registered participants for this drive yet!');window.location.href = 'hospital_drive.php';</script>
                         <?php
                         }?>
 
@@ -107,7 +106,6 @@ $result = $connection->query($sql);
         <footer>
             <p>&#169; Copyright. All Rights reserved</p>
         </footer>
-      
     </body>
     
 </html>

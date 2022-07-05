@@ -11,6 +11,8 @@
         <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
         <script type="text/javascript" src = "scripts/validate.js"></script>
         <link href = "css/styles.css" rel = "stylesheet">
+        <link rel="shortcut icon" href="images\Logo.png" type="image/x-icon">
+
        
     </head>
     <body>
@@ -77,9 +79,9 @@
                         
                             success:function(data){
                                 if(data == 1){
-                                    window.location.href="blood_drive/viewDrives.php";
+                                    window.location.href="donor_page.php";
                                 }else if(data == 2){
-                                    window.location.href="blood_drive/drive_scheduling.php";
+                                    window.location.href="hospital_page.php";
                                 }
                                 document.getElementById("login_form").reset();
                             },

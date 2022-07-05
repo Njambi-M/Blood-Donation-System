@@ -2,13 +2,14 @@
 
 include('connect.php');
 session_start()??null;
+$donor_id = $_SESSION['id']??null;
 
 if(isset($_POST['bookApp'])){
-    $donor_id = $_SESSION['id']??null;
-    $hospital_id= $_POST['hospital'];
-    $date= $_POST['app_date'];
-    $time= $_POST['app_time'];
-
+    if($donor_id??null != null){
+    
+        $hospital_id= $_POST['hospital'];
+        $date= $_POST['app_date'];
+        $time= $_POST['app_time'];
 
         $sql = "INSERT INTO hospital_appointment(donor_id, hospital_id, `date`, `time`) VALUES('$donor_id', '$hospital_id', '$date', '$time' )";
         
@@ -20,6 +21,10 @@ if(isset($_POST['bookApp'])){
             echo mysqli_error($connection);
 
         }
+    }else{
+        echo '<script>alert("Please login first then book an appointment"); window.location.href="../login.php";
+        </script>';
+    }
 }
 if(isset($_POST['update'])){
     $appointment_id=$_GET['appointment_id'];

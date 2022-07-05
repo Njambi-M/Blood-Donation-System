@@ -14,7 +14,8 @@ session_start()??null;
         <script src = 'scripts/date.js'></script>
         <script type="text/javascript" src = "scripts/validate.js"></script>
         <link href = "css/styles.css" rel = "stylesheet">
-       
+        <link rel="shortcut icon" href="images\Logo.png" type="image/x-icon">
+
     </head>
     <body>
         <header>     

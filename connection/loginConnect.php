@@ -27,7 +27,7 @@ if (mysqli_num_rows($result) > 0)
         echo 1;
     }
     else{
-        echo("Donor Login failed");
+        echo "<script>alert('Donor Login failed');</script>"; 
     }
 
 }
@@ -46,11 +46,11 @@ else if(mysqli_num_rows($result_hospital) > 0){
         echo 2;
     }
     else{
-        echo("Hospital Login failed");
+        echo "<script>alert('Hospital Login failed');</script>";
     }
 }
 
 else{
-    echo("User not found!Login failed!");
+    echo "<script>alert('User not found!Login failed!');</script>";
 }
 ?>
