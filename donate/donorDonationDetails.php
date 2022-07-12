@@ -1,20 +1,15 @@
 <?php
-session_start()??null;
-
 include('../connection/connect.php');
-
+session_start()??null;
 $id = $_SESSION['id']??null;
-$current_date=date('Y-m-d');
 
-$sql = "SELECT hospital.hospital_name, hospital_appointment.* FROM hospital_appointment LEFT JOIN hospital ON hospital.hospital_id = hospital_appointment.hospital_id WHERE donor_id = $id AND `date` >= $current_date AND `status`= 'not yet seen' ";
-
+$sql = "SELECT * FROM blood_details WHERE donor_id = '$id'";
 $result = $connection->query($sql);
-    
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>View Appointment</title>
+        <title>Donation Details</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -22,9 +17,6 @@ $result = $connection->query($sql);
         <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
         <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
         <link href = "../css/styles.css" rel = "stylesheet">
-        <link rel="shortcut icon" href="..\images\Logo.png" type="image/x-icon">
-        <script type="text/javascript" src = "../scripts/sidebar.js"></script>
-
         
        
     </head>
@@ -32,7 +24,7 @@ $result = $connection->query($sql);
         <header>     
         <nav>
             <img id="logo" src="../images/Logo.png" width="80"height="80"> 
-            <a href="../homepage.php" style="margin-left:15px;">Home</a> 
+            <a href="../hospital_page.php" style="margin-left:15px;">Home</a> 
 
                 <a href = ''style = "float: right;margin-right: 20px; padding-top:20px;" class = 'dropdown-toggle password' id = 'user' data-bs-toggle="dropdown"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -45,7 +37,8 @@ $result = $connection->query($sql);
                 </ul>
             </nav>
         </header>
-           <main class="donor_land">
+        
+        <main class="donor_land">
 
         <div class="flex-shrink-1 p-3 bg-white" id="dash">
     <a href="../donor_page.php" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
@@ -60,7 +53,7 @@ $result = $connection->query($sql);
         <div class="collapse" id="donate-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <li><a href="../blood_drive/viewDrives.php" class="link-dark d-inline-flex text-decoration-none rounded">Register for Blood Drives</a></li>
-            <li><a href="book_appointment.php" class="link-dark d-inline-flex text-decoration-none rounded">Book Hospital Appointment </a></li>
+            <li><a href="../hospital_appointment/book_appointment.php" class="link-dark d-inline-flex text-decoration-none rounded">Book Hospital Appointment </a></li>
           </ul>
         </div>
       </li>
@@ -70,8 +63,8 @@ $result = $connection->query($sql);
         </button>
         <div class="collapse" id="appointment-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="donorViewAppointments.php" class="link-dark d-inline-flex text-decoration-none rounded">Upcoming Appointments</a></li>
-            <li><a href="donorViewPastAppointments.php" class="link-dark d-inline-flex text-decoration-none rounded">Past Appointments</a></li>
+            <li><a href="../hospital_appointment/donorViewAppointments.php" class="link-dark d-inline-flex text-decoration-none rounded">Upcoming Appointments</a></li>
+            <li><a href="../hospital_appointment/donorViewPastAppointments.php" class="link-dark d-inline-flex text-decoration-none rounded">Past Appointments</a></li>
           </ul>
         </div>
       </li>
@@ -93,59 +86,47 @@ $result = $connection->query($sql);
         </button>
         <div class="collapse" id="donations-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="../donate/donorDonationDetails.php" class="link-dark d-inline-flex text-decoration-none rounded">View Blood Details</a></li>
-            <li><a href="../donate/donorTestResults.php" class="link-dark d-inline-flex text-decoration-none rounded">View Test Results</a></li>
+            <li><a href="donorDonationDetails.php" class="link-dark d-inline-flex text-decoration-none rounded">View Blood Details</a></li>
+            <li><a href="donorTestResults.php" class="link-dark d-inline-flex text-decoration-none rounded">View Test Results</a></li>
           </ul>
         </div>
       </li>
     </ul>
   </div>
+            <br/><br/>
         <div class="container">
-        <h2 style = 'text-align:center; margin-top:50px;margin-bottom:10px'> Upcoming Appointment</h2>
-        <?php
-                if (mysqli_num_rows($result) > 0)
-                {
-                    while($row = mysqli_fetch_assoc($result))
-                    {
-                        $appointment_id = $row['appointment_id'];
-                        ?>
-
-            
-                        <div class="row">
-                                <div class="col-md-auto"> 
-                                <div class="card" style = 'margin-bottom: 61px'>
-
-                                    <form action="editAppointment.php?appointment_id=<?php echo $appointment_id;?>" method="post" style='margin-top:10px;'>
-
-                                    <div class="card-body"> 
-                                            <div>
-                                                <h5 class="header-title mt-0 mb-4"><strong>Appointment ID:</strong> <?php echo $row['appointment_id']; ?></h5>
-                                                <h5 class="header-title mt-0 mb-4"><strong>Hospital Name: </strong><?php echo $row['hospital_name']; ?></h5>
-                                                <h5 class="header-title mt-0 mb-4"><strong>Date: </strong><?php echo $row['date']; ?></h5>
-                                                <h5 class="header-title mt-0 mb-4"><strong>Time: </strong><?php echo $row['time']; ?></h5>
-                                            </div>
-                                            <div style = 'text-align:center'>
-                                                            <a href = ""><input style = 'color:white;background-color:black;width:auto;' type = 'submit' value = 'Edit' name = 'edit'></a>
-                                <!-- <a href = "../connection/cancelAppointment.php?appointment_id=<?php echo $appointment_id;?>"><input style = 'color:white;background-color:black;width:auto;margin-left:15px;' type = 'submit' value = 'Cancel' name = 'cancel'></a> -->
-                            </div>
-                                            </div>
-                                    </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <?php 
-                        }
-                  }else{
-                        echo "<div class = 'col'></div><div style = 'text-align:center; margin-top: 20px; margin-bottom:334px; class = 'col-md-auto'><h5>You have no upcoming appointments</h5></div><div class = 'col'></div>";
+                <div class="row">
+                    <div class = 'col'></div>
+                    <div class = 'col-md-auto box-shadow hospital_profile'><?php
+                    if (mysqli_num_rows($result) > 0){
+                        while($row = mysqli_fetch_assoc($result)){?>
+                            <form method = 'post' action = '../connection/updatehospital.php?id=<?php echo $hospital_id?>'>
+                            <h4 style = 'padding-bottom:10px;text-align:center'>My Blood Details</h4>
+                            <?php
+                                echo "
+                                <p><b><label>Blood Details ID: </label></b>".$row['blood_details_id']."</p>";
+                                echo "<p><b><label>Donor ID: </label></b>".$row['donor_id']."</p>";
+                                echo "<p><b><label>Eligibility Status: </label></b></b>".$row['eligibility_status']."</p>";
+                                // echo "<p><b><label>Reason: </label></b></b>".$row['reason']."</p>";
+                                echo "<p><b><label>Haemoglobin Levels: </label></b>".$row['haemoglobin_levels']."</p>";
+                                echo "<p><b><label>Donor Weight: </label></b></b>".$row['donor_weight']."</p>";
+                                echo "<p><b><label>Blood Pressure: </label></b></b>".$row['blood_pressure']."</p>";
+                                echo "<p><b><label>Pulse: </label></b></b>".$row['pulse']."</p>";
+                                echo "<p><b><label>Date Filled: </label></b></b>".date('d/m/Y',strtotime($row['date_filled']))."</p>";
+                                echo "<div style = 'text-align:center'>";?>
+                               </div><?php
+                            }
+                    }else{ 
+                        echo "<script>alert('Blood details not found!');window.location.href='../donor_page.php'</script>";
                     }
-                ?>
-
+                    ?>
+                            </form>
+                        </div>
+                    <div class = 'col'></div>
                 </div>
-                                
-            
+            </div>
         </main>
-        <footer>
+        <footer class = 'sidenav_footer'>
             <p>&#169; Copyright. All Rights reserved</p>
         </footer>
     </body>

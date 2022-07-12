@@ -92,8 +92,8 @@ $result = $connection->query($sql);
         </button>
         <div class="collapse" id="donations-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">View Blood Details</a></li>
-            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">View Test Results</a></li>
+            <li><a href="../donate/donorDonationDetails.php" class="link-dark d-inline-flex text-decoration-none rounded">View Blood Details</a></li>
+            <li><a href="../donate/donorTestResults.php" class="link-dark d-inline-flex text-decoration-none rounded">View Test Results</a></li>
           </ul>
         </div>
       </li>

@@ -5,7 +5,7 @@ Donor
 email address: mukami@gmail.com
 password: mukami
 
-email address: salem@gmail.com
+email address: samel@gmail.com
 password: samelSalem
 
 email address: mk@gmail.com

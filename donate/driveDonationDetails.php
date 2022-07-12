@@ -4,10 +4,11 @@ session_start()??null;
 include('../connection/connect.php');
 
 $id = $_SESSION['id']??null;
-$drive_id = $_GET['id']??null;
+$blood_drive_id = $_GET['id']??null;
+
 
 $sql = "SELECT drive_booking.drive_booking_id, drive_booking.blood_drive_id,blood_drive.blood_drive_name,donor.donor_id, donor.first_name,donor.last_name,drive_booking.status FROM drive_booking,blood_drive,donor WHERE drive_booking.blood_drive_id
-IN('$drive_id') AND blood_drive.blood_drive_id = drive_booking.blood_drive_id AND drive_booking.donor_id = donor.donor_id";
+IN('$blood_drive_id') AND blood_drive.blood_drive_id = drive_booking.blood_drive_id AND drive_booking.donor_id = donor.donor_id AND drive_booking.status ='seen' ";
 
 $result = $connection->query($sql);
     
@@ -46,9 +47,9 @@ $result = $connection->query($sql);
             </nav>
         </header>
         <div class="sidenav box-shadow">
-            <a href="drive_scheduling.php">Schedule a drive</a>
-            <a href="driveHospitalView.php">Scheduled drives</a>
-            <a href="hospital_drive.php">Drive bookings and donations</a>
+            <a href="../blood_drive/drive_scheduling.php">Schedule a drive</a>
+            <a href="../blood_drive/driveHospitalView.php">Scheduled drives</a>
+            <a href="../blood_drive/hospital_drive.php">Drive bookings and donations</a>
             <a href="../hospital_appointment/hospitalViewConfirmedAppointment.php">Confirmed hospital appointments</a>
             <a href="../hospital_appointment/hospitalViewPendingAppointment.php">Pending hospital appointments</a>
         </div>
@@ -71,7 +72,8 @@ $result = $connection->query($sql);
                                         <th>Last Name</th>
                                         <th>Blood Drive ID</th>
                                         <th>Blood Drive Name</th>
-                                        <th>Donation Status</th>
+                                        <th>Status</th>
+                            
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -87,18 +89,18 @@ $result = $connection->query($sql);
                                     <td>".$drive_id."</td>
                                     <td>".$row['blood_drive_name']."</td>
                                     <td>".$row['status']."</td>
-                                    <td><a id='buttonconfirm' class='btn btn-light' href=../connection/confirmDriveDonation.php?id=" .$row['drive_booking_id']. ">Seen</a>" . "</td>
+                                    <td><a id='buttonconfirm' class='btn btn-light' href=donationDetails.php?donor_id=" .$row['donor_id']. ">Enter eligibility details</a>" . "</td>
                                 </tr>";
                               
                             }?>
                         </tbody>
                         </table><br/><div style = 'text-align:center'>
-                            <a href = 'hospital_drive.php'><button class = 'btn btn-primary'>Back</button></a>
+                            <a href = '../blood_drive/hospital_drive.php'><button class = 'btn btn-primary'>Back</button></a>
                             <a href = '../hospital_page.php'><button class = 'btn btn-primary'>Done</button></a>
                         </div>
                         <?php
                         }else {
-                           ?><script>alert('No registered participants for this drive yet!');window.location.href = 'hospital_drive.php';</script>
+                           ?><script>alert('No donations for this drive yet!');window.location.href = '../blood_drive/hospital_drive.php';</script>
                         <?php
                         }?>
 

@@ -6,14 +6,14 @@ include('../connection/connect.php');
 $id = $_SESSION['id']??null;
 
 $sql = "SELECT donor.donor_id, donor.first_name, donor.last_name, donor.donor_phoneNo, hospital_appointment.*
- FROM hospital_appointment LEFT JOIN donor ON donor.donor_id = hospital_appointment.donor_id WHERE hospital_id= $id AND `status` = 'seen' ORDER BY `date`, `time` ";
+ FROM hospital_appointment LEFT JOIN donor ON donor.donor_id = hospital_appointment.donor_id WHERE hospital_id= $id AND `status` = 'seen' AND blood_details_status='pending' ORDER BY `date`, `time` ";
 $result = $connection->query($sql);
     
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Booked Appointments</title>
+        <title>Confirmed Appointments</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -42,7 +42,14 @@ $result = $connection->query($sql);
                 </ul>
             </nav>
         </header>
-        <main>
+        <div class="sidenav box-shadow">
+            <a href="../blood_drive/drive_scheduling.php">Schedule a drive</a>
+            <a href="../blood_drive/driveHospitalView.php">Scheduled drives</a>
+            <a href="../blood_drive/hospital_drive.php">Drive bookings and donations</a>
+            <a href="hospitalViewConfirmedAppointment.php">Confirmed hospital appointments</a>
+            <a href="hospitalViewPendingAppointment.php">Pending hospital appointments</a>
+        </div>
+        <main class="main">
             <br><br><br>
             <div class="container">
                 <div class="row">
@@ -104,7 +111,7 @@ $result = $connection->query($sql);
             </div>
             
         </main>
-        <footer>
+        <footer class='sidenav_footer'>
             <p>&#169; Copyright. All Rights reserved</p>
         </footer>
       

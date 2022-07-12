@@ -1,7 +1,7 @@
 <?php 
 require_once('connect.php');
 
-$appointment_id = $_GET['appointment_id'];
+$appointment_id = $_GET['appointment_id']??null;
 
 $sql_delete = "DELETE FROM hospital_appointment WHERE appointment_id = '$appointment_id'";
 

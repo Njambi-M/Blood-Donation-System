@@ -7,7 +7,7 @@ $id = $_SESSION['id']??null;
 $drive_id = $_GET['id']??null;
 
 $sql = "SELECT drive_booking.drive_booking_id, drive_booking.blood_drive_id,blood_drive.blood_drive_name,donor.donor_id, donor.first_name,donor.last_name,drive_booking.status FROM drive_booking,blood_drive,donor WHERE drive_booking.blood_drive_id
-IN('$drive_id') AND blood_drive.blood_drive_id = drive_booking.blood_drive_id AND drive_booking.donor_id = donor.donor_id";
+IN('$drive_id') AND blood_drive.blood_drive_id = drive_booking.blood_drive_id AND drive_booking.donor_id = donor.donor_id AND `status` IN ('pending') ";
 
 $result = $connection->query($sql);
     
@@ -87,7 +87,7 @@ $result = $connection->query($sql);
                                     <td>".$drive_id."</td>
                                     <td>".$row['blood_drive_name']."</td>
                                     <td>".$row['status']."</td>
-                                    <td><a id='buttonconfirm' class='btn btn-light' href=../connection/confirmDriveDonation.php?id=" .$row['drive_booking_id']. ">Seen</a>" . "</td>
+                                    <td><a id='buttonconfirm' class='btn btn-light' href=../connection/confirmDriveDonation.php?id=" .$row['drive_booking_id']. ">Donated</a>" . "</td>
                                 </tr>";
                               
                             }?>
@@ -98,7 +98,7 @@ $result = $connection->query($sql);
                         </div>
                         <?php
                         }else {
-                           ?><script>alert('No registered participants for this drive yet!');window.location.href = 'hospital_drive.php';</script>
+                           ?><script>alert('There are no pending donors for this drive!');window.location.href = 'hospital_drive.php';</script>
                         <?php
                         }?>
 

@@ -94,8 +94,8 @@ $result = $connection->query($sql);
 </button>
 <div class="collapse" id="donations-collapse">
   <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-    <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">View Blood Details</a></li>
-    <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">View Test Results</a></li>
+    <li><a href="../donate/donorDonationDetails.php" class="link-dark d-inline-flex text-decoration-none rounded">View Blood Details</a></li>
+    <li><a href="../donate/donorTestResults.php" class="link-dark d-inline-flex text-decoration-none rounded">View Test Results</a></li>
   </ul>
 </div>
 </li>
@@ -116,7 +116,7 @@ $result = $connection->query($sql);
         
 				<div class="row">
                 <div class="col-md-auto"> 
-					<div class="card" style="margin-bottom:50px;">
+					<div class="card" style="margin-bottom:93px;">
                     <form action="editAppointment.php?appointment_id=<?php echo $appointment_id;?>" method="post" style='margin-top:10px;'>
 
 						<div class="card-body"> 
@@ -127,7 +127,7 @@ $result = $connection->query($sql);
                                 <h5 class="header-title mt-0 mb-4"><strong>Time: </strong><?php echo $row['time']; ?></h5>
 								</div>
                                 <div style = 'text-align:center'>
-                                <a href = ""><input style = 'color:white;background-color:black;width:auto;' type = 'submit' value = 'Edit' name = 'edit'></a>
+                                
                                 <!-- <a href = "../connection/cancelAppointment.php?appointment_id=<?php echo $appointment_id;?>"><input style = 'color:white;background-color:black;width:auto;margin-left:15px;' type = 'submit' value = 'Cancel' name = 'cancel'></a> -->
                             </div>
                         </form>
@@ -138,7 +138,7 @@ $result = $connection->query($sql);
                           <?php 
                         }
                     }else{
-                        echo "<div class = 'col'></div><div style = 'text-align:center; margin-top: 20px;'class = 'col-md-auto'><h5>You have not been to any appointments</h5></div><div class = 'col'></div>";
+                        echo "<div class = 'col'></div><div style = 'text-align:center; margin-top: 20px;margin-bottom:317px'class = 'col-md-auto'><h5>You have not been to any appointments</h5></div><div class = 'col'></div>";
                     }
                 ?>
 

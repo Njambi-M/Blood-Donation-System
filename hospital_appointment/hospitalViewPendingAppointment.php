@@ -27,7 +27,7 @@ $result = $connection->query($sql);
     </head>
     <body>
         <header>     
-        <nav>
+        <nav style = 'position:fixed'>
             <img id="logo" src="../images/Logo.png" width="80"height="80"> 
             <a href="../hospital_page.php" style="margin-left:15px;">Home</a> 
 
@@ -42,7 +42,14 @@ $result = $connection->query($sql);
                 </ul>
             </nav>
         </header>
-        <main>
+        <div class="sidenav box-shadow">
+            <a href="../blood_drive/drive_scheduling.php">Schedule a drive</a>
+            <a href="../blood_drive/driveHospitalView.php">Scheduled drives</a>
+            <a href="../blood_drive/hospital_drive.php">Drive bookings and donations</a>
+            <a href="hospitalViewConfirmedAppointment.php">Confirmed hospital appointments</a>
+            <a href="hospitalViewPendingAppointment.php">Pending hospital appointments</a>
+        </div>
+        <main class = 'main'>
             <br><br><br>
             <div class="container">
                 <div class="row">
@@ -104,7 +111,7 @@ $result = $connection->query($sql);
             </div>
             
         </main>
-        <footer>
+        <footer class = 'sidenav_footer'>
             <p>&#169; Copyright. All Rights reserved</p>
         </footer>
   

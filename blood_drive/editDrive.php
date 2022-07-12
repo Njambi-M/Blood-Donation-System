@@ -38,7 +38,7 @@ if (mysqli_num_rows($result) > 0)
     <body>
     <script src = 'https://cdn.jsdelivr.net/npm/jquery-datetimepicker@2.5.21/build/jquery.datetimepicker.full.min.js'></script>
         <header>     
-        <nav>
+        <nav style = 'position:fixed'>
             <img id="logo" src="../images/Logo.png" width="80"height="80"> 
             <a href="../hospital_page.php" style="margin-left:15px;">Home</a> 
 
@@ -53,7 +53,14 @@ if (mysqli_num_rows($result) > 0)
                 </ul>
             </nav>
         </header>
-        <main>
+        <div class="sidenav box-shadow">
+            <a href="drive_scheduling.php">Schedule a drive</a>
+            <a href="driveHospitalView.php">Scheduled drives</a>
+            <a href="hospital_drive.php">Drive bookings and donations</a>
+            <a href="../hospital_appointment/hospitalViewConfirmedAppointment.php">Confirmed hospital appointments</a>
+            <a href="../hospital_appointment/hospitalViewPendingAppointment.php">Pending hospital appointments</a>
+        </div>
+        <main class = 'main'>
             
             <br><br><br>
             <div class="container">
@@ -87,7 +94,7 @@ if (mysqli_num_rows($result) > 0)
             </div>
             <script src = '../scripts/date.js'></script>
         </main>
-        <footer>
+        <footer class = 'sidenav_footer'>
             <p>&#169; Copyright. All Rights reserved</p>
         </footer>
     </body>

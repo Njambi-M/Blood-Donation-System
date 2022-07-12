@@ -8,12 +8,12 @@ form{
     font-weight: 500;
 }
 #hospital_reg_form{
-    margin-top:51px;
-    margin-bottom: 85px;
+    margin-top:45px;
+    margin-bottom: 78px;
 }
 #login_form{
-    margin-top:45px;
-    margin-bottom: 76px;
+    margin-top:40px;
+    margin-bottom: 68px;
 }
 #registration_form{
     margin-bottom: 20px;
@@ -39,12 +39,13 @@ form{
     padding-bottom: 20px;
 }
 #edit_appointment_form, #book_appointment_form{
-    margin-top:50px;
+    margin-top:87px;
+    margin-bottom: 52px;
 }
 .hospital_profile{
-    margin-bottom:40px;
+    margin-bottom:57px;
     padding: 20px;
-    margin-top: 98px;
+    margin-top: 60px;
 }
 #confirmedAppointments{
     margin-top:70px;
@@ -104,7 +105,7 @@ input, #gender{
     box-shadow: 5px 0px 10px #888888;
 }
 form#driveview{
-    width:10px
+    width:10px;
 }
 @media screen and (max-width: 800px) {
 
@@ -176,13 +177,15 @@ footer{
     top: 0;
     left: 0;
     background-color: #fff;
-    overflow-x: hidden;
-    /* padding-top: 20px; */
+    overflow-x: auto;
     margin-top:85px;
+}
+.main {
+    margin-left: 250px;
 }
   
 .sidenav a {
-    padding: 12px 8px 20px 16px;
+    padding: 12px 8px 5px 16px;
     text-decoration: none;
     font-size: 20px;
     color: #000;
@@ -202,8 +205,6 @@ footer{
 .donor_land{
     display:flex;
 }
-
-
 .btn-toggle {
     padding: .25rem .5rem;
     font-weight: 600;

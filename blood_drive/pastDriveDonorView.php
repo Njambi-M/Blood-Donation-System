@@ -6,7 +6,7 @@ include('../connection/connect.php');
 $id = $_SESSION['id'];
 $sqldrive = "SELECT blood_drive.blood_drive_id, blood_drive.blood_drive_name, blood_drive.blood_drive_location, 
 blood_drive.date_from, blood_drive.date_to, drive_booking.* FROM drive_booking LEFT JOIN
-blood_drive ON blood_drive.blood_drive_id = drive_booking.blood_drive_id WHERE donor_id = '$id' AND `status`='seen' ";
+blood_drive ON blood_drive.blood_drive_id = drive_booking.blood_drive_id WHERE donor_id = '$id' AND `status`='donated' ";
 $resultdrive = $connection->query($sqldrive);
 ?>
 
@@ -93,16 +93,16 @@ $resultdrive = $connection->query($sqldrive);
         </button>
         <div class="collapse" id="donations-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">View Blood Details</a></li>
-            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">View Test Results</a></li>
+            <li><a href="../donate/donorDonationDetails.php" class="link-dark d-inline-flex text-decoration-none rounded">View Blood Details</a></li>
+            <li><a href="../donate/donorTestResults.php" class="link-dark d-inline-flex text-decoration-none rounded">View Test Results</a></li>
           </ul>
         </div>
       </li>
     </ul>
   </div>
 
-        <div class="container">
-        <h2 style="text-align:center;">Attended Drives</h2> 
+        <div class="container" style = 'margin-bottom:115px'>
+        <h2 style="text-align:center; margin-top:30px;">Attended Drives</h2> 
 
         <div class="cards-data">
 
@@ -126,17 +126,16 @@ if (mysqli_num_rows($resultdrive) > 0)
                                 <h5 class="header-title mt-0 mb-4"><strong>Time: </strong><?php echo date('h:i a',strtotime($row['date_from'])); ?> <strong>-</strong> <?php echo date('h:i a',strtotime($row['date_to'])); ?></h5>
                                 </div>
                                 <div style = 'text-align:center'>
-                                <a href = ""><input style = 'color:white;background-color:black;width:auto;margin-left:15px;' type = 'submit' value = 'Cancel' name = 'cancel'></a>
+                                
                             </div>
                         </div>
                         </form>
                        
-                    
 
                           <?php 
-                        }
+                        } 
                     }else{
-                        echo "<div class = 'col'></div><div style = 'text-align:center; margin-top: 20px;'class = 'col-md-auto'><h5>You have not attended any blood drives</h5></div><div class = 'col'></div>";
+                        echo "<div class = 'col'></div><div style = 'text-align:center; margin-top: 20px;margin-bottom:337px;'class = 'col-md-auto'><h5>You have not attended any blood drives</h5></div><div class = 'col'></div>";
                     }
         ?>
         </div>

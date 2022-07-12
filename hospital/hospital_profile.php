@@ -1,9 +1,7 @@
 <?php
 include('../connection/connect.php');
 session_start()??null;
-
 $id = $_SESSION['id']??null;
-echo "<br/><br/>";
 
 $sql = "SELECT * FROM hospital WHERE hospital_id = '$id'";
 $result = $connection->query($sql);
@@ -40,8 +38,14 @@ $result = $connection->query($sql);
                 </ul>
             </nav>
         </header>
-        
-        <main>
+        <div class="sidenav box-shadow">
+            <a href="../blood_drive/drive_scheduling.php">Schedule a drive</a>
+            <a href="../blood_drive/driveHospitalView.php">Scheduled drives</a>
+            <a href="../blood_drive/hospital_drive.php">Drive bookings and donations</a>
+            <a href="../hospital_appointment/hospitalViewConfirmedAppointment.php">Confirmed hospital appointments</a>
+            <a href="../hospital_appointment/hospitalViewPendingAppointment.php">Pending hospital appointments</a>
+        </div>
+        <main class = 'main'>
             <div class="container">
                 <div class="row">
                     <div class = 'col'></div>
@@ -71,7 +75,7 @@ $result = $connection->query($sql);
                 </div>
             </div>
         </main>
-        <footer>
+        <footer class = 'sidenav_footer'>
             <p>&#169; Copyright. All Rights reserved</p>
         </footer>
     </body>

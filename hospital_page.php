@@ -38,14 +38,16 @@
             <a href="blood_drive/hospital_drive.php">Drive bookings and donations</a>
             <a href="hospital_appointment/hospitalViewConfirmedAppointment.php">Confirmed hospital appointments</a>
             <a href="hospital_appointment/hospitalViewPendingAppointment.php">Pending hospital appointments</a>
+            <!-- <a href="">View all hospital donations</a>
+            <a href="">View all drive donations</a> -->
         </div>
         <main>
-        <br><br><br><br/>
+        <br><br>
             <div class="container">
                 <div class="row">
                     <div class="col"></div>
                     <div class="col-md-auto">
-                        <img style = 'margin-left:200px; height:455px;width: 440px'src = 'images/drive.jpg'>
+                        <img style = 'margin-left:200px; height:418px;width: 420px'src = 'images/drive.jpg'>
                     </div>
                     <div class="col"></div>
                 </div>

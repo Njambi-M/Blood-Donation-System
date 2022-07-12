@@ -13,7 +13,7 @@ if(isset($_POST['register'])){
         
         if ($connection->query($sql))
         {
-            echo '<script>alert("Registration successful! See you then."); window.location.href ="../blood_drive/viewDrives.php" </script>';
+            echo '<script>alert("Registration successful! See you then."); window.location.href ="../blood_drive/driveDonorView.php" </script>';
 
         }else{
             echo "Failed to insert";
