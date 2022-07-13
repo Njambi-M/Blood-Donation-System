@@ -82,6 +82,9 @@ thead{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
+.booked_drives{
+    display: grid;
+}
 #submit,#login{
     margin-left:35%;
     color:white;
@@ -214,7 +217,7 @@ footer{
   .btn-toggle:hover,
   .btn-toggle:focus {
     color: rgba(0, 0, 0, .85);
-    background-color: #d2f4ea;
+    background-color: #adb5bd;
   }
   
   .btn-toggle::before {
@@ -239,7 +242,7 @@ footer{
   }
   .btn-toggle-nav a:hover,
   .btn-toggle-nav a:focus {
-    background-color: grey;
+    background-color:#adb5bd;
     color:white;
   }
   #dash{

@@ -16,7 +16,7 @@ if ($resultUpdate){
     $sql="INSERT INTO donation (donation_date, blood_details_id, hospital_id) VALUES('$current_date', '$blood_details_id', '$hospital_id') ";
      $result=$connection->query($sql);
      if ($result){
-        echo '<script>alert("Donation Complete."); window.location.href ="../hospital_page.php" </script>';
+        echo '<script>alert("Donation Complete."); window.location.href ="../donate/hospitalViewDonations.php" </script>';
     }
   else{
     echo mysqli_error($connection);

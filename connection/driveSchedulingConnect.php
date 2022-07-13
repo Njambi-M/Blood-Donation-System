@@ -18,7 +18,8 @@
            echo "<script>window.location.href='../blood_drive/driveHospitalView.php';alert('Successful! Blood drive scheduled.'); </script>";
         }
         else{
-           header("location: ../drive_scheduling.php");
+           echo "<script>window.location.href='../drive_scheduling.php';alert('Error! Kindly try again.'); </script>";
+
         }
     }else if(isset($_POST['update_drive'])){
         $drive_id = $_POST['drive_id'];
@@ -36,7 +37,8 @@
            echo "<script>window.location.href='../blood_drive/driveHospitalView.php';alert('Successful! Blood drive updated.'); </script>";
         }
         else{
-           header("location: ../editDrive.php");
+           echo "<script>window.location.href='../editDrive.php';alert('Error! Kindly try again.'); </script>";
+
         }
     }
     else{

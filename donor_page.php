@@ -110,7 +110,7 @@ $id= $_SESSION['id']??null;
         if($result=mysqli_query($connection, $sqldonation)){
 
                                         while ($row = mysqli_fetch_assoc($result)) {
-                                            echo "You have donated ".$row['donor_count']. "times";
+                                            echo "You have donated ".$row['donor_count']. " times";
                                         }
                                     }else{
                         echo "You have no donation history.<br>";
@@ -122,7 +122,7 @@ $id= $_SESSION['id']??null;
                         </div>
                 </div>
 </div>
-<h2 style="text-align:center;">Upcoming appointments/Blood Drives</h2>  
+<h2 style="text-align:center; margin-top:10px;">Upcoming appointments</h2>  
 <div class="cards-data" style="margin-bottom:35px;">
   
 <?php
@@ -164,8 +164,11 @@ $result = $connection->query($sql);
                         echo "<div class = 'col'></div><div style = 'text-align:center; margin-top: 20px;'class = 'col-md-auto'><h5>You have no upcoming appointments</h5></div><div class = 'col'></div>";
                     }
                     ?>
-                   </div>
-                   
+                   </div><br>
+                  
+                   <h2 style="text-align:center; margin-top:10px;">Upcoming Registered Blood Drives</h2>  
+
+  
                  <?php
                     $sqldrive = "SELECT blood_drive.blood_drive_id, blood_drive.blood_drive_name, blood_drive.blood_drive_location, 
                     blood_drive.date_from, blood_drive.date_to, drive_booking.* FROM drive_booking LEFT JOIN
@@ -185,7 +188,7 @@ $result = $connection->query($sql);
                         <div class="card-body"> 
                                 <div>
                                 <h5 class="header-title mt-0 mb-4"><strong>Blood Drive Name:</strong> <?php echo $row['blood_drive_name']; ?></h5>
-                                <h5 class="header-title mt-0 mb-4"><strong>Blood Drive Name: </strong><?php echo $row['blood_drive_location']; ?></h5>
+                                <h5 class="header-title mt-0 mb-4"><strong>Blood Drive Location: </strong><?php echo $row['blood_drive_location']; ?></h5>
                                 <h5 class="header-title mt-0 mb-4"><strong>Date: </strong><?php echo date('Y-m-d',strtotime($row['date_from'])); ?> <strong>to</strong> <?php echo date('Y-m-d',strtotime($row['date_to'])); ?></h5>
                                 <h5 class="header-title mt-0 mb-4"><strong>Time: </strong><?php echo date('h:i a',strtotime($row['date_from'])); ?> <strong>-</strong> <?php echo date('h:i a',strtotime($row['date_to'])); ?></h5>
                                 </div>

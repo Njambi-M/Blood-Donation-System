@@ -15,21 +15,15 @@ if(isset($_POST['ddetails'])){
         $pulse= $_POST['pulse'];
         $date_filled= date('Y-m-d h:i:s');
 
-        $sqlage="SELECT TIMESTAMPDIFF (YEAR, date_of_birth, CURDATE())
-        as age from donor WHERE donor_id=$donor_id";
-
-$result= $connection->query($sqlage) ;
-$row=mysqli_fetch_array($result);
-$donor_age=$row['age'];
-
+     
 if($reason!=null){
-    $sql = "INSERT INTO blood_details(hospital_id, donor_id, eligibility_status, reason, haemoglobin_levels, donor_age, donor_weight,
-    blood_pressure, pulse, date_filled) VALUES('$hospital_id', '$donor_id', '$eligibility_status', '$reason', '$haemoglobin_levels',
-     '$donor_age', '$donor_weight', '$blood_pressure', '$pulse','$date_filled' )";
+    $sql = "INSERT INTO blood_details(hospital_id, donor_id, eligibility_status, reason, haemoglobin_levels, donor_weight,
+    blood_pressure, pulse, date_filled) VALUES('$hospital_id', '$donor_id', '$eligibility_status', '$reason', '$haemoglobin_levels', 
+    '$donor_weight', '$blood_pressure', '$pulse','$date_filled' )";
 }else{
-    $sql = "INSERT INTO blood_details(hospital_id, donor_id, eligibility_status, haemoglobin_levels, donor_age, donor_weight,
-    blood_pressure, pulse, date_filled) VALUES('$hospital_id', '$donor_id', '$eligibility_status', '$haemoglobin_levels',
-     '$donor_age', '$donor_weight', '$blood_pressure', '$pulse','$date_filled' )";
+    $sql = "INSERT INTO blood_details(hospital_id, donor_id, eligibility_status, haemoglobin_levels, donor_weight,
+    blood_pressure, pulse, date_filled) VALUES('$hospital_id', '$donor_id', '$eligibility_status', '$haemoglobin_levels', 
+    '$donor_weight', '$blood_pressure', '$pulse','$date_filled' )";
 }
 
        
@@ -38,7 +32,7 @@ if($reason!=null){
         {
             $sql_update= "UPDATE hospital_appointment SET blood_details_status='complete' WHERE donor_id=$donor_id";
             if ($connection->query($sql_update)){
-                echo '<script>alert("Details entered successfully."); window.location.href ="../hospital_page.php" </script>';
+                echo '<script>alert("Details entered successfully."); window.location.href ="../donate/hospitalViewDonationDetails.php" </script>';
             }
           else{
             echo mysqli_error($connection);

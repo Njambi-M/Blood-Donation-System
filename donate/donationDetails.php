@@ -44,8 +44,11 @@ $donor_id=$_GET['donor_id']??null;
             <a href="../blood_drive/drive_scheduling.php">Schedule a drive</a>
             <a href="../blood_drive/driveHospitalView.php">Scheduled drives</a>
             <a href="../blood_drive/hospital_drive.php">Drive bookings and donations</a>
-            <a href="../hospital_appointment/hospitalViewConfirmedAppointment.php">Confirmed hospital appointments</a>
             <a href="../hospital_appointment/hospitalViewPendingAppointment.php">Pending hospital appointments</a>
+            <a href="../hospital_appointment/hospitalViewConfirmedAppointment.php">Confirmed hospital appointments</a>
+            <a href="hospitalViewDonationDetails.php">View donation details</a>
+            <a href="hospitalViewDonations.php">View donations</a>
+            <a href="../test_results/HospitalViewReleasedResults.php">View Blood Test Results</a>
         </div>
         <main class="main">
             <div class="container">
@@ -58,6 +61,18 @@ $donor_id=$_GET['donor_id']??null;
                             <label for="donor_id">Donor ID</label>
                             <input readonly type = 'number' name = 'donor_id' value = '<?php echo $donor_id;?>' id = 'donor_id' required autofocus autocomplete = 'off'>
                             <br/><br/>
+                            <label for="weight">Donor Weight(kg)</label>
+                            <input type = 'number' name = 'weight' id = 'weight' required autofocus autocomplete = 'off'>
+                            <br/><br/>
+                            <label for="hb">Haemoglobin Levels(g/dL)</label>
+                            <input type = 'number' name = 'hb' id = 'hb' required autofocus autocomplete = 'off'>
+                            <br/><br/>
+                            <label for="bp">Blood Pressure(mmHg)</label>
+                            <input type = 'number' name = 'bp' id = 'bp' required autofocus autocomplete = 'off'>
+                            <br/><br/>
+                            <label for="pulse">Pulse(bpm)</label>
+                            <input type = 'number' name = 'pulse' id = 'pulse' required autofocus autocomplete = 'off'>
+                            <br/><br/>
                             <label for="eligible">Eligibility Status</label>
                             <select id='eligible_status' name='eligibility_status'>
                             <option value="eligible">Eligible</option>
@@ -68,18 +83,6 @@ $donor_id=$_GET['donor_id']??null;
                             <label for="reason">Reason</label>
                             <input type = 'text' name = 'reason' id = 'reason' autofocus autocomplete = 'off'>
                             </div>
-                            <br/><br/>
-                            <label for="weight">Donor Weight</label>
-                            <input type = 'number' name = 'weight' id = 'weight' required autofocus autocomplete = 'off'>
-                            <br/><br/>
-                            <label for="hb">HB Levels</label>
-                            <input type = 'number' name = 'hb' id = 'hb' required autofocus autocomplete = 'off'>
-                            <br/><br/>
-                            <label for="bp">Blood Pressure</label>
-                            <input type = 'number' name = 'bp' id = 'bp' required autofocus autocomplete = 'off'>
-                            <br/><br/>
-                            <label for="pulse">Pulse</label>
-                            <input type = 'number' name = 'pulse' id = 'pulse' required autofocus autocomplete = 'off'>
                             <br/><br/>
                             <input id = 'submit' type = 'submit' name = 'ddetails' value = 'Save'>
 

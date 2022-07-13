@@ -29,8 +29,8 @@ session_start()??null;
                       <li><a class="dropdown-item" href="hospital_registration.php">Hospital</a></li>
                   </ul>
               <a id="nav-pages" href="login.php">Login</a>
-              <a id="nav-pages" href="blood_drive/viewDrives.php">Blood Drives</a> 
-              <a id="nav-pages" href="#">More Info</a>
+              <a id="nav-pages" href="blood_drive/viewDrivesAsUnregisteredUser.php">Blood Drives</a> 
+              <a id="nav-pages" href="#">Eligibility Requirements</a>
               <a id="nav-pages" href="#" >Contact Us</a>
 </div>  
     </nav>
@@ -42,39 +42,25 @@ session_start()??null;
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="images/headline2.png" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" /></svg>
-        <!-- <img src="images/headline2.png" style="height: 100%; width: 100%; "> -->
+        <img src="images/cov.jpg" style="height: 100%; width: 100%; ">
         <div class="container">
-          <div class="carousel-caption text-start">
+          <div class="carousel-caption text-end">
             <h1>BLOOD AID</h1>
-            <p>Providing easy access to donation facilities.</p>
+            <p>Providing blood donors with easy access to donation facilities.</p>
             <p><a class="btn btn-lg btn-primary" href="login.php">Donate today</a></p>
           </div>
         </div>
       </div>
       <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-
+      <img src="images/cov2.jpg" style="height: 100%; width: 100%; ">
         <div class="container">
-          <div class="carousel-caption">
-            <h1>BLOOD AID</h1>
-            <p>Get up to date information on blood donation.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-      <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="images/headline2.png" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" /></svg>
-
-        <div class="container">
-          <div class="carousel-caption text-end">
-            <h1>BLOOD AID</h1>
-            <p>Get a pool of blood donors when faced with a shortage.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+          <div class="carousel-caption text-start">
+           <strong> <h1>Save a life today,</h1>
+            <h1>Be saved tomorrow</h1> </strong>
+            <p><a class="btn btn-lg btn-primary" href="#">Learn the requirements</a></p>
           </div>
         </div>
       </div>
@@ -156,7 +142,7 @@ session_start()??null;
         <div class="container-fluid">
 
 
-                    <h1> The Donation Process</h1><br><br>
+                    <br><h1> The Donation Process</h1><br><br>
      
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <div class="col">
@@ -291,9 +277,9 @@ session_start()??null;
 <div class="container">
   <footer class="py-3 ">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Home</a></li>
+      <li class="nav-item"><a href="homepage.php" class="nav-link px-2 text-white">Home</a></li>
       <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Hospitals</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Blood drives</a></li>
+      <li class="nav-item"><a href="blood_drive/viewDrivesAsUnregisteredUser.php" class="nav-link px-2 text-white">Blood drives</a></li>
       <li class="nav-item"><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
       <li class="nav-item"><a href="#" class="nav-link px-2 text-white">About</a></li>
     </ul>

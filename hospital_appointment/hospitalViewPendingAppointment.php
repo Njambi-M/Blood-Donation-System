@@ -46,8 +46,11 @@ $result = $connection->query($sql);
             <a href="../blood_drive/drive_scheduling.php">Schedule a drive</a>
             <a href="../blood_drive/driveHospitalView.php">Scheduled drives</a>
             <a href="../blood_drive/hospital_drive.php">Drive bookings and donations</a>
-            <a href="hospitalViewConfirmedAppointment.php">Confirmed hospital appointments</a>
             <a href="hospitalViewPendingAppointment.php">Pending hospital appointments</a>
+            <a href="hospitalViewConfirmedAppointment.php">Confirmed hospital appointments</a>
+            <a href="../donate/hospitalViewDonationDetails.php">View donation details</a>
+            <a href="../donate/hospitalViewDonations.php">View donations</a>
+            <a href="../test_results/HospitalViewReleasedResults.php">View Blood Test Results</a>
         </div>
         <main class = 'main'>
             <br><br><br>

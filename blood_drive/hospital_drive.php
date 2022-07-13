@@ -21,6 +21,8 @@ $result = $connection->query($sql);
         <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
         <script type="text/javascript" src = "../scripts/validate.js"></script>
         <link href = "../css/styles.css" rel = "stylesheet">
+        <link rel="shortcut icon" href="..\images\Logo.png" type="image/x-icon">
+
        
     </head>
     <body>
@@ -44,8 +46,11 @@ $result = $connection->query($sql);
             <a href="drive_scheduling.php">Schedule a drive</a>
             <a href="driveHospitalView.php">Scheduled drives</a>
             <a href="hospital_drive.php">Drive bookings and donations</a>
-            <a href="../hospital_appointment/hospitalViewConfirmedAppointment.php">Confirmed hospital appointments</a>
             <a href="../hospital_appointment/hospitalViewPendingAppointment.php">Pending hospital appointments</a>
+            <a href="../hospital_appointment/hospitalViewConfirmedAppointment.php">Confirmed hospital appointments</a>
+            <a href="../donate/hospitalViewDonationDetails.php">View donation details</a>
+            <a href="../donate/hospitalViewDonations.php">View donations</a>
+            <a href="../test_results/HospitalViewReleasedResults.php">View Blood Test Results</a>
         </div>
         <main class = 'main'>
             <div style ='margin-top:50px'>
@@ -106,7 +111,7 @@ $result = $connection->query($sql);
             </div>
             
         </main>
-        <footer class = 'sidenav_footer'>
+        <footer class = 'sidenav_footer' style="margin-top:11px;">
             <p>&#169; Copyright. All Rights reserved</p>
         </footer>
     </body>

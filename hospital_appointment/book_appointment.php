@@ -138,7 +138,8 @@ $result = $connection->query($sql);
             </div>
            
         </main>
-        <footer>
+        
+        <footer style="margin-top:23px;">
             <p>&#169; Copyright. All Rights reserved</p>
         </footer>
     </body>

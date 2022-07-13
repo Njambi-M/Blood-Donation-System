@@ -15,6 +15,8 @@ $id = $_SESSION['id']??null;
         <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
         <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
         <link href = "../css/styles.css" rel = "stylesheet">
+        <link rel="shortcut icon" href="..\images\Logo.png" type="image/x-icon">
+
         
        
     </head>

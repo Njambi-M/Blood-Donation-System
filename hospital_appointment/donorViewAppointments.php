@@ -145,7 +145,7 @@ $result = $connection->query($sql);
                                 
             
         </main>
-        <footer>
+        <footer style="margin-top:24px;">
             <p>&#169; Copyright. All Rights reserved</p>
         </footer>
     </body>

@@ -116,7 +116,7 @@ $result = $connection->query($sql);
         
 				<div class="row">
                 <div class="col-md-auto"> 
-					<div class="card" style="margin-bottom:93px;">
+					<div class="card" style="margin-top:50px; margin-right:10px;">
                     <form action="editAppointment.php?appointment_id=<?php echo $appointment_id;?>" method="post" style='margin-top:10px;'>
 
 						<div class="card-body"> 
@@ -134,7 +134,7 @@ $result = $connection->query($sql);
 						</div>
                         </div>
 					</div>
-
+                        </div>
                           <?php 
                         }
                     }else{
@@ -149,7 +149,7 @@ $result = $connection->query($sql);
                 </div>
             
         </main>
-        <footer>
+        <footer style="margin-top:80px;">
             <p>&#169; Copyright. All Rights reserved</p>
         </footer>
     </body>

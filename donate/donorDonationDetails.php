@@ -17,6 +17,8 @@ $result = $connection->query($sql);
         <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
         <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
         <link href = "../css/styles.css" rel = "stylesheet">
+        <link rel="shortcut icon" href="..\images\Logo.png" type="image/x-icon">
+
         
        
     </head>
@@ -107,14 +109,16 @@ $result = $connection->query($sql);
                                 <p><b><label>Blood Details ID: </label></b>".$row['blood_details_id']."</p>";
                                 echo "<p><b><label>Donor ID: </label></b>".$row['donor_id']."</p>";
                                 echo "<p><b><label>Eligibility Status: </label></b></b>".$row['eligibility_status']."</p>";
-                                // echo "<p><b><label>Reason: </label></b></b>".$row['reason']."</p>";
-                                echo "<p><b><label>Haemoglobin Levels: </label></b>".$row['haemoglobin_levels']."</p>";
-                                echo "<p><b><label>Donor Weight: </label></b></b>".$row['donor_weight']."</p>";
-                                echo "<p><b><label>Blood Pressure: </label></b></b>".$row['blood_pressure']."</p>";
-                                echo "<p><b><label>Pulse: </label></b></b>".$row['pulse']."</p>";
+                                if ($row['reason']!=null){
+                                echo "<p><b><label>Reason: </label></b></b>".$row['reason']."</p>";
+                                }
+                                echo "<p><b><label>Haemoglobin Levels(g/dL): </label></b>".$row['haemoglobin_levels']."</p>";
+                                echo "<p><b><label>Donor Weight(kg): </label></b></b>".$row['donor_weight']."</p>";
+                                echo "<p><b><label>Blood Pressure(mmHg): </label></b></b>".$row['blood_pressure']."</p>";
+                                echo "<p><b><label>Pulse(bpm): </label></b></b>".$row['pulse']."</p>";
                                 echo "<p><b><label>Date Filled: </label></b></b>".date('d/m/Y',strtotime($row['date_filled']))."</p>";
-                                echo "<div style = 'text-align:center'>";?>
-                               </div><?php
+                                echo "<div style = 'text-align:center'></div>";
+                               
                             }
                     }else{ 
                         echo "<script>alert('Blood details not found!');window.location.href='../donor_page.php'</script>";
