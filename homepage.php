@@ -243,7 +243,7 @@ $id = $_SESSION['id']??null;
       <div class="col d-flex align-items-start">
         <div>
           <h4 class="fw-bold mb-0">Donation History</h4>
-          <p>Donors can view their donation history and keep track of when they can donate next.</p>
+          <p>Donors can view their donation history </p>
         </div>
       </div>
       <div class="col d-flex align-items-start">
@@ -260,14 +260,8 @@ $id = $_SESSION['id']??null;
       </div>
       <div class="col d-flex align-items-start">
         <div>
-          <h4 class="fw-bold mb-0">Provide answers to questions on blood donation</h4>
-          <p>Hospitals can post information on blood donation based on questions sent by donors.</p>
-        </div>
-      </div>
-      <div class="col d-flex align-items-start">
-        <div>
-          <h4 class="fw-bold mb-0">Keep track of blood donated</h4>
-          <p>Hospitals can keep track of blood donated at a specific blood drive thus ensuring it is all accounted for.</p>
+          <h4 class="fw-bold mb-0">Enter Donation Details</h4>
+          <p>Hospitals can enter donation details which will reflect on the respective donor's portal.</p>
         </div>
       </div>
     </div>
