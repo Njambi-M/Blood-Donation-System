@@ -5,6 +5,21 @@ $id = $_SESSION['id']??null;
 
 $sql = "SELECT * FROM blood_details WHERE donor_id = '$id'";
 $result = $connection->query($sql);
+
+// if (mysqli_num_rows($result) > 0){
+//   while($row_d = mysqli_fetch_assoc($result)){
+//     $details_id = $row_d['blood_details_id'];
+//     $sql_donation = "SELECT donation_date FROM donation WHERE blood_details_id = $details_id";
+//     $result_donation = $connection->query($sql_donation);
+//     if (mysqli_num_rows($result_donation) > 0){
+//       while($row_don = mysqli_fetch_assoc($result_donation)){
+//         echo "<div class = 'main'>".$row_don['donation_date']."</div>";
+//         // echo "<script>alert('Kufika imefika');</script>";
+
+//       }
+//     }
+//   }
+// }
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,7 +41,9 @@ $result = $connection->query($sql);
         <header>     
         <nav>
             <img id="logo" src="../images/Logo.png" width="80"height="80"> 
-            <a href="../hospital_page.php" style="margin-left:15px;">Home</a> 
+            <a href="../homepage.php" style="margin-left:15px;">Home</a> 
+            <a href="../donation_requirements.php" style="margin-left:15px;">Eligibility</a> 
+            <a href="../RegisteredHospitals.php" style="margin-left:15px;">Partnered Hospitals</a> 
 
                 <a href = ''style = "float: right;margin-right: 20px; padding-top:20px;" class = 'dropdown-toggle password' id = 'user' data-bs-toggle="dropdown"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -101,7 +118,13 @@ $result = $connection->query($sql);
                     <div class = 'col'></div>
                     <div class = 'col-md-auto box-shadow hospital_profile'><?php
                     if (mysqli_num_rows($result) > 0){
-                        while($row = mysqli_fetch_assoc($result)){?>
+                        while($row = mysqli_fetch_assoc($result)){
+                          $details_id = $row['blood_details_id'];
+                          $sql_donation = "SELECT donation_date FROM donation WHERE blood_details_id = $details_id";
+                          $result_donation = $connection->query($sql_donation);
+                          if (mysqli_num_rows($result_donation) > 0){
+                            
+                          ?>
                             <form method = 'post' action = '../connection/updatehospital.php?id=<?php echo $hospital_id?>'>
                             <h4 style = 'padding-bottom:10px;text-align:center'>My Blood Details</h4>
                             <?php
@@ -117,8 +140,15 @@ $result = $connection->query($sql);
                                 echo "<p><b><label>Blood Pressure(mmHg): </label></b></b>".$row['blood_pressure']."</p>";
                                 echo "<p><b><label>Pulse(bpm): </label></b></b>".$row['pulse']."</p>";
                                 echo "<p><b><label>Date Filled: </label></b></b>".date('d/m/Y',strtotime($row['date_filled']))."</p>";
-                                echo "<div style = 'text-align:center'></div>";
+                                
+                                while($row_don = mysqli_fetch_assoc($result_donation)){
+                                  echo "<p><b><label>Donation Date: </label></b></b>".date('d/m/Y', strtotime($row_don['donation_date']))."</p>";
                                
+    
+                                }
+
+                              }
+                              echo "<div style = 'text-align:center'></div>";
                             }
                     }else{ 
                         echo "<script>alert('Blood details not found!');window.location.href='../donor_page.php'</script>";

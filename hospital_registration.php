@@ -50,6 +50,9 @@ session_start()??null;
                             <label>Phone Number</label>
                             <input type = 'number' name = 'hospital_phoneNo' id = 'hospital_phoneNo' min = 0 max = '9999999999' required autocomplete = 'off'>
                             <br/><br/>
+                            <label>Location</label>
+                            <input type = 'text' name = 'hospital_location' id = 'hospital_location' required autofocus autocomplete = 'off'>
+                            <br/><br/>
                             <label>Password</label>
                             <input type = 'password' name = 'hospital_password' id = 'hospital_password' required autocomplete = 'off'>                            
                             <br/><br/>

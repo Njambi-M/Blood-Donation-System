@@ -49,13 +49,14 @@ $donor_id=$_GET['donor_id']??null;
             <a href="hospitalViewDonationDetails.php">View donation details</a>
             <a href="hospitalViewDonations.php">View donations</a>
             <a href="../test_results/HospitalViewReleasedResults.php">View Blood Test Results</a>
+            <a href="../hospital/requestBlood.php">Send alert for donation</a>
         </div>
         <main class="main">
             <div class="container">
                 <div class="row">
         
                
-                <div class="col-md-auto">
+                <div class="col-md-auto" style="margin-left:200px;">
                     <form action="../connection/blood_details.php?hospital_id=<?php echo $id;?>" class = 'box-shadow' id = 'donation_details_form' method = 'POST'>
                     <h4 id = 'blood_details_heading'>Enter Donor Details</h4>
                             <label for="donor_id">Donor ID</label>
@@ -68,7 +69,7 @@ $donor_id=$_GET['donor_id']??null;
                             <input type = 'number' name = 'hb' id = 'hb' required autofocus autocomplete = 'off'>
                             <br/><br/>
                             <label for="bp">Blood Pressure(mmHg)</label>
-                            <input type = 'number' name = 'bp' id = 'bp' required autofocus autocomplete = 'off'>
+                            <input type = 'text' name = 'bp' id = 'bp' required autofocus autocomplete = 'off'>
                             <br/><br/>
                             <label for="pulse">Pulse(bpm)</label>
                             <input type = 'number' name = 'pulse' id = 'pulse' required autofocus autocomplete = 'off'>

@@ -49,6 +49,7 @@ $result = $connection->query($sql);
             <a href="hospitalViewDonationDetails.php">View donation details</a>
             <a href="hospitalViewDonations.php">View donations</a>
             <a href="../test_results/HospitalViewReleasedResults.php">View Blood Test Results</a>
+            <a href="../hospital/requestBlood.php">Send alert for donation</a>
         </div>
         <main class="main">
             <br><br><br>
@@ -65,7 +66,6 @@ $result = $connection->query($sql);
                                     <tr>
                                         <th>Blood Details ID</th>
                                         <th>Donor ID</th>
-                                        <th>Donor Age</th>
                                         <th>Donor Weight</th>
                                         <th>HB Levels</th>
                                         <th>Blood Pressure</th>
@@ -83,7 +83,6 @@ $result = $connection->query($sql);
 
                                 echo "<td>".$row['blood_details_id']."</td>";
                                 echo "<td>".$row['donor_id']."</td>";
-                                echo "<td>".$row['donor_age']."</td>";
                                 echo "<td>".$row['donor_weight']."</td>";
                                 echo "<td>".$row['haemoglobin_levels']."</td>";
                                 echo "<td>".$row['blood_pressure']."</td>";

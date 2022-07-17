@@ -1,21 +1,15 @@
 <?php
-session_start()??null;
-
 include('../connection/connect.php');
-
+session_start()??null;
 $id = $_SESSION['id']??null;
-$current_date = date('Y-m-d');
 
-$sql = "SELECT blood_drive_id,blood_drive_name,blood_drive_location,date_from,date_to,hospital_name FROM 
-blood_drive,hospital WHERE hospital.hospital_id = blood_drive.hospital_id AND date_to > '$current_date' ORDER BY date_from";
-
+$sql = "SELECT * FROM donor WHERE donor_id = '$id'";
 $result = $connection->query($sql);
-    
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Blood Drives View</title>
+        <title>Donor Profile</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -25,17 +19,16 @@ $result = $connection->query($sql);
         <script type="text/javascript" src = "../scripts/validate.js"></script>
         <link href = "../css/styles.css" rel = "stylesheet">
         <link rel="shortcut icon" href="..\images\Logo.png" type="image/x-icon">
-        <script type="text/javascript" src = "../scripts/sidebar.js"></script>
 
         
        
     </head>
     <body>
         <header>     
-        <nav>
-            <img id="logo" src="../images/Logo.png" width="80"height="80"> 
-            <a href="../homepage.php" style="margin-left:15px;">Home</a> 
-            <a href="../donation_requirements.php" style="margin-left:15px;">Eligibility</a> 
+            <nav>
+                <img id="logo" src="../images/Logo.png" width="80"height="80"> 
+                <a href="../hospital_page.php" style="margin-left:15px;">Home</a> 
+                <a href="../donation_requirements.php" style="margin-left:15px;">Eligibility</a> 
             <a href="../RegisteredHospitals.php" style="margin-left:15px;">Partnered Hospitals</a> 
 
                 <a href = ''style = "float: right;margin-right: 20px; padding-top:20px;" class = 'dropdown-toggle password' id = 'user' data-bs-toggle="dropdown"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -44,14 +37,12 @@ $result = $connection->query($sql);
                 </svg>&nbsp;<?php echo $_SESSION['name']??null;?></a>
 
                <ul class="dropdown-menu" aria-labelledby="user">
-                    <li><a id = 'user_profile'class="dropdown-item" href="#">My Profile</a></li>
+                    <li><a id = 'user_profile'class="dropdown-item" href="donor_profile.php">My Profile</a></li>
                     <li><a id = 'log_out' class="dropdown-item" href="../connection/logout.php">Log Out</a></li>
                 </ul>
             </nav>
         </header>
-        <main>
-
- <main class="donor_land">
+        <main class="donor_land">
 
         <div class="flex-shrink-1 p-3 bg-white" id="dash">
     <a href="../donor_page.php" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
@@ -65,8 +56,8 @@ $result = $connection->query($sql);
         </button>
         <div class="collapse" id="donate-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="viewDrives.php" class="link-dark d-inline-flex text-decoration-none rounded">Register for Blood Drives</a></li>
-            <li><a href="../hospital_appointment/book_appointment.php" class="link-dark d-inline-flex text-decoration-none rounded">Book Hospital Appointment </a></li>
+            <li><a href="../blood_drive/viewDrives.php" class="link-dark d-inline-flex text-decoration-none rounded">Register for Blood Drives</a></li>
+            <li><a href="book_appointment.php" class="link-dark d-inline-flex text-decoration-none rounded">Book Hospital Appointment </a></li>
           </ul>
         </div>
       </li>
@@ -76,8 +67,8 @@ $result = $connection->query($sql);
         </button>
         <div class="collapse" id="appointment-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="../hospital_appointment/donorViewAppointments.php" class="link-dark d-inline-flex text-decoration-none rounded">Upcoming Appointments</a></li>
-            <li><a href="../hospital_appointment/donorViewPastAppointments.php" class="link-dark d-inline-flex text-decoration-none rounded">Past Appointments</a></li>
+            <li><a href="donorViewAppointments.php" class="link-dark d-inline-flex text-decoration-none rounded">Upcoming Appointments</a></li>
+            <li><a href="donorViewPastAppointments.php" class="link-dark d-inline-flex text-decoration-none rounded">Past Appointments</a></li>
           </ul>
         </div>
       </li>
@@ -87,9 +78,9 @@ $result = $connection->query($sql);
         </button>
         <div class="collapse" id="drive-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="viewDrives.php" class="link-dark d-inline-flex text-decoration-none rounded">View Upcoming Drives</a></li>
-            <li><a href="driveDonorView.php" class="link-dark d-inline-flex text-decoration-none rounded">View Registered Drives</a></li>
-            <li><a href="pastDriveDonorView.php" class="link-dark d-inline-flex text-decoration-none rounded">View Attended Drives</a></li>
+            <li><a href="../blood_drive/viewDrives.php" class="link-dark d-inline-flex text-decoration-none rounded">View Upcoming Drives</a></li>
+            <li><a href="../blood_drive/driveDonorView.php" class="link-dark d-inline-flex text-decoration-none rounded">View Registered Drives</a></li>
+            <li><a href="../blood_drive/pastDriveDonorView.php" class="link-dark d-inline-flex text-decoration-none rounded">View Attended Drives</a></li>
           </ul>
         </div>
       </li>
@@ -106,47 +97,41 @@ $result = $connection->query($sql);
       </li>
     </ul>
   </div>
-    <div class="container">
-
-    
-            <h1 style = 'text-align:center; margin-top:15px;'>Blood Drives</h1>
-            <div class="container_drive_view">
-               
-                <?php
-                    if (mysqli_num_rows($result) > 0)
-                    {
-                        while($row = mysqli_fetch_assoc($result))
-                        {
-                            $drive_id = $row['blood_drive_id'];
-                            ?><form method = 'post' action = "../connection/driveRegistration.php?id=<?php echo $drive_id;?>"><div id = 'driveview'class="col-md-auto box-shadow" ><?php
-                            echo "<h3 style = 'text-align:center'>".$row['blood_drive_name']."</h3>
-                            <b><p>Organizer:</b> ".$row['hospital_name']."</p>
-                            <b><p>Location:</b> ".$row['blood_drive_location']." </p>";
-
-                            if(date('d/m/Y', strtotime($row['date_from'])) == date('d/m/Y', strtotime($row['date_to']))){
-                                echo "<b><p>Date:</b> ".date('d/m/Y', strtotime($row['date_from']))."</p>";
-                            }else{
-                                echo "<b><p>Date:</b> ".date('d/m/Y', strtotime($row['date_from']))."<b> to</b> ".date('d/m/Y', strtotime($row['date_to']))."</p>";
+            <div class="container">
+                <div class="row">
+                    <div class = 'col'></div>
+                    <div class = 'col-md-auto box-shadow'><?php
+                    if (mysqli_num_rows($result) > 0){
+                            while($row = mysqli_fetch_assoc($result)){
+                                $donor_id = $row['donor_id'];?>
+                        <form method = 'post' action = '../connection/updatedonor.php?id=<?php echo $donor_id?>'>
+                        <h4 style = 'padding-bottom:10px;text-align:center'>Donor Profile</h4>
+                        <?php
+                       
+                                echo "
+                                <p><b><label>Donor ID: </label></b><input autocomplete = 'off' type = 'number' name = 'id'readonly value = ". $row['donor_id']."></p>";
+                                echo "<p><b><label>First Name: </label></b><input autocomplete = 'off' type = 'text' name = 'first_name' value = '". $row['first_name']."'></p>";
+                                echo "<p><b><label>Last Name: </label></b><input autocomplete = 'off' type = 'text' name = 'last_name' value = '". $row['last_name']."'></p>";
+                                echo "<p><b><label>Email: </label></b><input autocomplete = 'off' type = 'email' name = 'email' value = ". $row['donor_email']."></p>";
+                                echo "<p><b><label>Phone Number: </label></b><input autocomplete = 'off' type = 'number' min = 0 name = 'phoneNo' value = ". $row['donor_phoneNo']."></p>";
+                                echo "<p><b><label>Gender: </label></b><input autocomplete = 'off' type = 'text' name = 'gender' value = '". $row['gender']."'></p>";
+                                echo "<p><b><label>Date of Birth: </label></b><input autocomplete = 'off' type = 'date' name = 'dob' value = '". $row['date_of_birth']."'></p>";
+                                echo "<p><b><label>Password: </label></b><input autocomplete = 'off' type = 'password' name = 'pass' value = '". $row['donor_password']."'></p>";
+                               echo "<div style = 'text-align:center'>";?>
+                                <a href = ''><button id = 'form-btn' class = 'btn btn-dark'>Update</button></a></div><?php
                             }
-                            
-                            echo "
-                            <b><p>Time:</b> ".date('h:i a', strtotime($row['date_from']))."<b> to</b> ".date('h:i a', strtotime($row['date_to']))."</p>";?>
-                            <div style = 'text-align:center'>
-                                <a href = ""><input style = 'color:white;background-color:black;width:auto' type = 'submit' value = 'Register' name = 'register'></a>
-                            </div>
-                            </div></form><?php
+                        }else{
+                            echo "<script >alert('Donor not found! Please login');window.location.href = '../login.php'</script>";
                         }
-                    }else{
-                        echo "<div class = 'col'></div><div style = 'text-align:center; margin-top: 20px;margin-bottom: 371px'class = 'col-md-auto'><h5>No Blood Drives have been Scheduled</h5></div><div class = 'col'></div>";
-                    }
-                ?>
+                        ?>
+                        </form>
+                    </div>
+                    <div class = 'col'></div>
+                </div>
             </div>
-        </div>
-            
         </main>
         <footer>
             <p>&#169; Copyright. All Rights reserved</p>
         </footer>
     </body>
-    
 </html>

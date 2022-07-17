@@ -33,6 +33,10 @@ $result = $connection->query($sql);
         <nav style = 'position:fixed;'>
             <img id="logo" src="../images/Logo.png" width="80"height="80"> 
             <a href="../hospital_page.php" style="margin-left:15px;">Home</a> 
+            <a href="../donation_requirements.php" style="margin-left:15px;">Eligibility</a> 
+            <a href="../RegisteredHospitals.php" style="margin-left:15px;">Partnered Hospitals</a> 
+
+            
 
                 <a href = ''style = "float: right;margin-right: 20px; padding-top:20px;" class = 'dropdown-toggle password' id = 'user' data-bs-toggle="dropdown"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -54,6 +58,7 @@ $result = $connection->query($sql);
             <a href="../donate/hospitalViewDonationDetails.php">View donation details</a>
             <a href="../donate/hospitalViewDonations.php">View donations</a>
             <a href="../test_results/HospitalViewReleasedResults.php">View Blood Test Results</a>
+            <a href="../hospital/requestBlood.php">Send alert for donation</a>
         </div>
 
         <main class = 'main'>
@@ -74,7 +79,7 @@ $result = $connection->query($sql);
                                         <th>Last Name</th>
                                         <th>Blood Drive ID</th>
                                         <th>Blood Drive Name</th>
-                                        <th>Donation Status</th>
+                                        <th>Attendance Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -90,7 +95,7 @@ $result = $connection->query($sql);
                                     <td>".$drive_id."</td>
                                     <td>".$row['blood_drive_name']."</td>
                                     <td>".$row['status']."</td>
-                                    <td><a id='buttonconfirm' class='btn btn-light' href=../connection/confirmDriveDonation.php?id=" .$row['drive_booking_id']. ">Seen</a>" . "</td>
+                                    <td><a id='buttonconfirm' class='btn btn-light' href=../connection/confirmDriveDonation.php?id=" .$row['drive_booking_id']. ">Arrived</a>" . "</td>
                                 </tr>";
                               
                             }?>

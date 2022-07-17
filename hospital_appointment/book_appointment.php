@@ -32,6 +32,8 @@ $result = $connection->query($sql);
             <nav>
             <img id="logo" src="../images/Logo.png" width="80"height="80"> 
             <a href="../homepage.php" style="margin-left:15px;">Home</a> 
+            <a href="../donation_requirements.php" style="margin-left:15px;">Eligibility</a> 
+            <a href="../RegisteredHospitals.php" style="margin-left:15px;">Partnered Hospitals</a> 
 
                 <a href = ''style = "float: right;margin-right: 20px; padding-top:20px;" class = 'dropdown-toggle password' id = 'user' data-bs-toggle="dropdown"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>

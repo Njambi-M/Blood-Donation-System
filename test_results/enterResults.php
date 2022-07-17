@@ -25,7 +25,7 @@ $donation_id=$_GET['donation_id']??null;
     <body>
  
         <header>     
-        <nav>
+        <nav style = 'position:fixed'>
             <img id="logo" src="../images/Logo.png" width="80"height="80"> 
             <a href="../hospital_page.php" style="margin-left:15px;">Home</a> 
 
@@ -49,13 +49,15 @@ $donation_id=$_GET['donation_id']??null;
             <a href="../donate/hospitalViewDonationDetails.php">View donation details</a>
             <a href="../donate/hospitalViewDonations.php">View donations</a>
             <a href="HospitalViewReleasedResults.php">View Blood Test Results</a>
+            <a href="../hospital/requestBlood.php">Send alert for donation</a>
         </div>
         <main class="main">
+            <br><br><br><br>
             <div class="container">
                 <div class="row">
         
                
-                <div class="col-md-auto">
+                <div class="col-md-auto" style="margin-left:200px;">
                     <form action="../connection/ReleaseResults.php?donation_id=<?php echo $donation_id;?>" class = 'box-shadow' id = 'donation_details_form' method = 'POST'>
                     <h4 id = 'blood_details_heading'>Enter Results Details</h4>
                             <label for="donation_id">Donation ID</label>

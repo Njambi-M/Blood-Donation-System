@@ -11,9 +11,23 @@ password: samelSalem
 email address: mk@gmail.com
 password: mkubwa
 
+email address: lucykar@gmail.com
+password: LucyKarim1
+
+email address: sgitau@gmail.com
+password: SusanGit
+
 Hospital:
 email address: nairobiwest@hospital.com
 password: nairobiWest
 
 email address: meridian@hospital.com
 password: meridian
+
+Email Set-up localhost
+https://github.com/ravisingh2811/Send-Mail-From-Localhost-setup/blob/main/mail%20setup.txt
+https://stackoverflow.com/questions/72577189/gmail-smtp-server-stopped-working-as-it-no-longer-support-less-secure-apps
+
+Email to use for localhost setup
+email: bloodaid1@gmail.com
+password: bloodAid_1.

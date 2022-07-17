@@ -54,6 +54,7 @@ $result = $connection->query($sql);
             <a href="../donate/hospitalViewDonationDetails.php">View donation details</a>
             <a href="../donate/hospitalViewDonations.php">View donations</a>
             <a href="../test_results/HospitalViewReleasedResults.php">View Blood Test Results</a>
+            <a href="../hospital/requestBlood.php">Send alert for donation</a>
         </div>
 
         <main class = 'main'>
@@ -74,7 +75,7 @@ $result = $connection->query($sql);
                                         <th>Last Name</th>
                                         <th>Blood Drive ID</th>
                                         <th>Blood Drive Name</th>
-                                        <th>Donation Status</th>
+                                        <th>Attendance Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -90,7 +91,7 @@ $result = $connection->query($sql);
                                     <td>".$drive_id."</td>
                                     <td>".$row['blood_drive_name']."</td>
                                     <td>".$row['status']."</td>
-                                    <td><a id='buttonconfirm' class='btn btn-light' href=../connection/confirmDriveDonation.php?id=" .$row['drive_booking_id']. ">Donated</a>" . "</td>
+                                    <td><a id='buttonconfirm' class='btn btn-light' href=../connection/confirmDriveDonation.php?id=" .$row['drive_booking_id']. ">Arrived</a>" . "</td>
                                 </tr>";
                               
                             }?>

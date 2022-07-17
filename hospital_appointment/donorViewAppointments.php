@@ -6,7 +6,7 @@ include('../connection/connect.php');
 $id = $_SESSION['id']??null;
 $current_date=date('Y-m-d');
 
-$sql = "SELECT hospital.hospital_name, hospital_appointment.* FROM hospital_appointment LEFT JOIN hospital ON hospital.hospital_id = hospital_appointment.hospital_id WHERE donor_id = $id AND `date` >= $current_date AND `status`= 'not yet seen' ";
+$sql = "SELECT hospital.hospital_name, hospital.hospital_location, hospital_appointment.* FROM hospital_appointment LEFT JOIN hospital ON hospital.hospital_id = hospital_appointment.hospital_id WHERE donor_id = $id AND `date` >= $current_date AND `status`= 'not yet seen' ";
 
 $result = $connection->query($sql);
     
@@ -33,6 +33,8 @@ $result = $connection->query($sql);
         <nav>
             <img id="logo" src="../images/Logo.png" width="80"height="80"> 
             <a href="../homepage.php" style="margin-left:15px;">Home</a> 
+            <a href="../donation_requirements.php" style="margin-left:15px;">Eligibility</a> 
+            <a href="../RegisteredHospitals.php" style="margin-left:15px;">Partnered Hospitals</a> 
 
                 <a href = ''style = "float: right;margin-right: 20px; padding-top:20px;" class = 'dropdown-toggle password' id = 'user' data-bs-toggle="dropdown"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -121,12 +123,12 @@ $result = $connection->query($sql);
                                             <div>
                                                 <h5 class="header-title mt-0 mb-4"><strong>Appointment ID:</strong> <?php echo $row['appointment_id']; ?></h5>
                                                 <h5 class="header-title mt-0 mb-4"><strong>Hospital Name: </strong><?php echo $row['hospital_name']; ?></h5>
+                                                <h5 class="header-title mt-0 mb-4"><strong>Hospital Location: </strong><?php echo $row['hospital_location']; ?></h5>
                                                 <h5 class="header-title mt-0 mb-4"><strong>Date: </strong><?php echo $row['date']; ?></h5>
                                                 <h5 class="header-title mt-0 mb-4"><strong>Time: </strong><?php echo $row['time']; ?></h5>
                                             </div>
                                             <div style = 'text-align:center'>
                                                             <a href = ""><input style = 'color:white;background-color:black;width:auto;' type = 'submit' value = 'Edit' name = 'edit'></a>
-                                <!-- <a href = "../connection/cancelAppointment.php?appointment_id=<?php echo $appointment_id;?>"><input style = 'color:white;background-color:black;width:auto;margin-left:15px;' type = 'submit' value = 'Cancel' name = 'cancel'></a> -->
                             </div>
                                             </div>
                                     </form>
@@ -137,7 +139,7 @@ $result = $connection->query($sql);
                             <?php 
                         }
                   }else{
-                        echo "<div class = 'col'></div><div style = 'text-align:center; margin-top: 20px; margin-bottom:334px; class = 'col-md-auto'><h5>You have no upcoming appointments</h5></div><div class = 'col'></div>";
+                        echo "<div class = 'col'></div><div style = 'text-align:center; margin-top: 20px; margin-bottom:334px; class = 'col-md-auto'><h5>You have no upcoming appointments</h5><a href = '../hospital_appointment/book_appointment.php'>Book Appointment?</a></div><div class = 'col'></div>";
                     }
                 ?>
 

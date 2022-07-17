@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2022 at 09:30 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.1
+-- Generation Time: Jul 14, 2022 at 10:17 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,37 @@ SET time_zone = "+00:00";
 --
 -- Database: `blood_donation`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blood_details`
+--
+
+CREATE TABLE `blood_details` (
+  `blood_details_id` int(11) NOT NULL,
+  `hospital_id` int(11) NOT NULL,
+  `donor_id` int(11) NOT NULL,
+  `eligibility_status` varchar(15) NOT NULL,
+  `reason` varchar(200) DEFAULT NULL,
+  `haemoglobin_levels` int(3) NOT NULL,
+  `donor_weight` int(3) NOT NULL,
+  `blood_pressure` int(3) NOT NULL,
+  `pulse` int(3) NOT NULL,
+  `date_filled` datetime NOT NULL,
+  `donation_status` varchar(10) NOT NULL DEFAULT 'pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `blood_details`
+--
+
+INSERT INTO `blood_details` (`blood_details_id`, `hospital_id`, `donor_id`, `eligibility_status`, `reason`, `haemoglobin_levels`, `donor_weight`, `blood_pressure`, `pulse`, `date_filled`, `donation_status`) VALUES
+(6, 1, 1, 'not-eligible', 'underweight', 89, 56, 76, 89, '2022-07-10 09:17:52', 'pending'),
+(7, 1, 2, 'eligible', NULL, 78, 56, 65, 32, '2022-07-10 09:58:54', 'complete'),
+(8, 1, 2, 'eligible', NULL, 98, 56, 87, 54, '2022-07-10 11:40:53', 'complete'),
+(9, 1, 1, 'eligible', NULL, 98, 67, 21, 78, '2022-07-11 10:06:56', 'complete'),
+(11, 1, 1, 'eligible', NULL, 89, 67, 56, 45, '2022-07-13 02:56:31', 'complete');
 
 -- --------------------------------------------------------
 
@@ -41,7 +72,34 @@ CREATE TABLE `blood_drive` (
 --
 
 INSERT INTO `blood_drive` (`blood_drive_id`, `blood_drive_name`, `blood_drive_location`, `date_from`, `date_to`, `hospital_id`) VALUES
-(2, 'Meridian Drive', 'Uhuru Gardens', '2022-07-19 08:30:00', '2022-07-26 18:00:00', 2);
+(2, 'Meridian Drive', 'Uhuru Gardens', '2022-07-19 08:30:00', '2022-07-26 18:00:00', 2),
+(3, 'Drive 1', 'Uhuru gardens', '2022-07-20 08:00:00', '2022-07-22 14:50:00', 2),
+(4, 'Nairobi West Drive', 'Nyayo Stadium', '2022-07-22 08:00:00', '2022-07-26 18:00:00', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `donation`
+--
+
+CREATE TABLE `donation` (
+  `donation_id` int(11) NOT NULL,
+  `donation_date` date NOT NULL,
+  `blood_details_id` int(11) NOT NULL,
+  `hospital_id` int(11) NOT NULL,
+  `results_status` varchar(15) NOT NULL DEFAULT 'pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `donation`
+--
+
+INSERT INTO `donation` (`donation_id`, `donation_date`, `blood_details_id`, `hospital_id`, `results_status`) VALUES
+(1, '2022-07-10', 6, 1, 'pending'),
+(2, '2022-07-07', 7, 1, 'released'),
+(3, '2022-07-10', 8, 1, 'released'),
+(4, '2022-04-12', 9, 1, 'released'),
+(5, '2022-07-13', 11, 1, 'released');
 
 -- --------------------------------------------------------
 
@@ -78,18 +136,17 @@ INSERT INTO `donor` (`donor_id`, `first_name`, `last_name`, `donor_email`, `dono
 CREATE TABLE `drive_booking` (
   `drive_booking_id` int(11) NOT NULL,
   `donor_id` int(11) DEFAULT NULL,
-  `blood_drive_id` int(11) DEFAULT NULL
+  `blood_drive_id` int(11) DEFAULT NULL,
+  `status` varchar(10) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `drive_booking`
 --
 
-INSERT INTO `drive_booking` (`drive_booking_id`, `donor_id`, `blood_drive_id`) VALUES
-(1, 1, 2),
-(2, 1, 2),
-(3, 1, 2),
-(4, 3, 2);
+INSERT INTO `drive_booking` (`drive_booking_id`, `donor_id`, `blood_drive_id`, `status`) VALUES
+(4, 3, 2, 'seen'),
+(8, 2, 4, 'pending');
 
 -- --------------------------------------------------------
 
@@ -125,21 +182,60 @@ CREATE TABLE `hospital_appointment` (
   `hospital_id` int(11) NOT NULL,
   `date` date NOT NULL,
   `time` time NOT NULL,
-  `status` varchar(15) NOT NULL DEFAULT 'not yet seen'
+  `status` varchar(15) NOT NULL DEFAULT 'not yet seen',
+  `blood_details_status` varchar(15) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `hospital_appointment`
 --
 
-INSERT INTO `hospital_appointment` (`appointment_id`, `donor_id`, `hospital_id`, `date`, `time`, `status`) VALUES
-(1, 1, 1, '2022-07-26', '12:30:00', 'not yet seen'),
-(7, 2, 1, '2022-06-30', '11:40:00', 'not yet seen'),
-(8, 3, 2, '2022-06-28', '15:00:00', 'seen');
+INSERT INTO `hospital_appointment` (`appointment_id`, `donor_id`, `hospital_id`, `date`, `time`, `status`, `blood_details_status`) VALUES
+(1, 1, 1, '2022-07-26', '12:30:00', 'not yet seen', 'pending'),
+(7, 2, 1, '2022-06-30', '11:40:00', 'seen', 'complete'),
+(8, 3, 1, '2022-06-28', '15:00:00', 'not yet seen', 'pending'),
+(10, 1, 2, '2022-07-01', '13:00:00', 'seen', 'complete'),
+(11, 2, 1, '2022-07-28', '14:00:00', 'not yet seen', 'pending');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `test_results`
+--
+
+CREATE TABLE `test_results` (
+  `results_id` int(11) NOT NULL,
+  `donation_id` int(11) NOT NULL,
+  `blood_group` varchar(10) NOT NULL,
+  `Rh_type` varchar(10) NOT NULL,
+  `hepatitis_B` varchar(10) NOT NULL,
+  `hepatitis_C` varchar(10) NOT NULL,
+  `HIV` varchar(10) NOT NULL,
+  `Syphilis` varchar(10) NOT NULL,
+  `bacterial_contamination` varchar(10) NOT NULL,
+  `t_lymphotropic_virus` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `test_results`
+--
+
+INSERT INTO `test_results` (`results_id`, `donation_id`, `blood_group`, `Rh_type`, `hepatitis_B`, `hepatitis_C`, `HIV`, `Syphilis`, `bacterial_contamination`, `t_lymphotropic_virus`) VALUES
+(3, 2, 'O Negative', 'negative', 'negative', 'negative', 'negative', 'negative', 'negative', 'negative'),
+(4, 4, 'A Negative', 'negative', 'negative', 'negative', 'negative', 'negative', 'negative', 'negative'),
+(7, 5, 'O Positive', 'negative', 'negative', 'negative', 'negative', 'negative', 'negative', 'negative');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `blood_details`
+--
+ALTER TABLE `blood_details`
+  ADD PRIMARY KEY (`blood_details_id`),
+  ADD KEY `hospital_const` (`hospital_id`),
+  ADD KEY `donor_id_const` (`donor_id`);
 
 --
 -- Indexes for table `blood_drive`
@@ -147,6 +243,14 @@ INSERT INTO `hospital_appointment` (`appointment_id`, `donor_id`, `hospital_id`,
 ALTER TABLE `blood_drive`
   ADD PRIMARY KEY (`blood_drive_id`),
   ADD KEY `hospital_id` (`hospital_id`);
+
+--
+-- Indexes for table `donation`
+--
+ALTER TABLE `donation`
+  ADD PRIMARY KEY (`donation_id`),
+  ADD KEY `hospital` (`hospital_id`),
+  ADD KEY `blood_det` (`blood_details_id`);
 
 --
 -- Indexes for table `donor`
@@ -177,14 +281,33 @@ ALTER TABLE `hospital_appointment`
   ADD KEY `hospital_id` (`hospital_id`);
 
 --
+-- Indexes for table `test_results`
+--
+ALTER TABLE `test_results`
+  ADD PRIMARY KEY (`results_id`),
+  ADD KEY `donation` (`donation_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `blood_details`
+--
+ALTER TABLE `blood_details`
+  MODIFY `blood_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `blood_drive`
 --
 ALTER TABLE `blood_drive`
-  MODIFY `blood_drive_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `blood_drive_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `donation`
+--
+ALTER TABLE `donation`
+  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `donor`
@@ -196,7 +319,7 @@ ALTER TABLE `donor`
 -- AUTO_INCREMENT for table `drive_booking`
 --
 ALTER TABLE `drive_booking`
-  MODIFY `drive_booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `drive_booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `hospital`
@@ -208,17 +331,37 @@ ALTER TABLE `hospital`
 -- AUTO_INCREMENT for table `hospital_appointment`
 --
 ALTER TABLE `hospital_appointment`
-  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `test_results`
+--
+ALTER TABLE `test_results`
+  MODIFY `results_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
 --
 
 --
+-- Constraints for table `blood_details`
+--
+ALTER TABLE `blood_details`
+  ADD CONSTRAINT `donor_id_const` FOREIGN KEY (`donor_id`) REFERENCES `donor` (`donor_id`),
+  ADD CONSTRAINT `hospital_const` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`hospital_id`);
+
+--
 -- Constraints for table `blood_drive`
 --
 ALTER TABLE `blood_drive`
   ADD CONSTRAINT `blood_drive_ibfk_1` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`hospital_id`);
+
+--
+-- Constraints for table `donation`
+--
+ALTER TABLE `donation`
+  ADD CONSTRAINT `blood_det` FOREIGN KEY (`blood_details_id`) REFERENCES `blood_details` (`blood_details_id`),
+  ADD CONSTRAINT `hospital` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`hospital_id`);
 
 --
 -- Constraints for table `drive_booking`
@@ -233,6 +376,12 @@ ALTER TABLE `drive_booking`
 ALTER TABLE `hospital_appointment`
   ADD CONSTRAINT `donor_id` FOREIGN KEY (`donor_id`) REFERENCES `donor` (`donor_id`),
   ADD CONSTRAINT `hospital_id` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`hospital_id`);
+
+--
+-- Constraints for table `test_results`
+--
+ALTER TABLE `test_results`
+  ADD CONSTRAINT `donation` FOREIGN KEY (`donation_id`) REFERENCES `donation` (`donation_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

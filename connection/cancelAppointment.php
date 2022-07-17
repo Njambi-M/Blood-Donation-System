@@ -7,7 +7,7 @@ $sql_delete = "DELETE FROM hospital_appointment WHERE appointment_id = '$appoint
 
 if($connection->query($sql_delete))
 {
-    echo "<script>alert('Appointment Canceled');window.location.href = '../donor_page.php'</script>";
+    echo "<script>alert('Appointment Canceled');window.location.href = '../hospital_appointment/donorViewAppointments.php'</script>";
 }else{
     echo "<script>alert('Failed to cancel appointment');window.location.href = '../hospital_appointment/donorViewAppointments.php'</script>";
 }

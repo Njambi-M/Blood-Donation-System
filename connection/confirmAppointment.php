@@ -11,7 +11,7 @@ if($result = mysqli_query($connection, $sql)){
         $sql_quantity= "UPDATE hospital_appointment SET `status` = 'seen' WHERE appointment_id = '$app_id' ";
 $update= mysqli_query($connection, $sql_quantity);
 if($update){
-    echo '<script>alert("Donor Confirmed."); window.location.href ="../hospital_appointment/hospitalViewPendingAppointment.php" </script>';
+    echo '<script>alert("Donor Confirmed."); window.location.href ="../hospital_appointment/hospitalViewConfirmedAppointment.php"; </script>';
 
    }else{
      echo mysqli_error($connection);

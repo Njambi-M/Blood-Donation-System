@@ -49,6 +49,7 @@ $result = $connection->query($sql);
             <a href="../donate/hospitalViewDonationDetails.php">View donation details</a>
             <a href="../donate/hospitalViewDonations.php">View donations</a>
             <a href="../test_results/HospitalViewReleasedResults.php">View Blood Test Results</a>
+            <a href="requestBlood.php">Send alert for donation</a>
         </div>
         <main class = 'main'>
             <div class="container">
@@ -65,6 +66,7 @@ $result = $connection->query($sql);
                                 echo "
                                 <p><b><label>Hospital ID: </label></b><input autocomplete = 'off' type = 'number' name = 'id'readonly value = ". $row['hospital_id']."></p>";
                                 echo "<p><b><label>Name: </label></b><input autocomplete = 'off' type = 'text' name = 'name' value = '". $row['hospital_name']."'></p>";
+                                echo "<p><b><label>Location: </label></b><input autocomplete = 'off' type = 'text' name = 'location' value = '". $row['hospital_location']."'></p>";
                                 echo "<p><b><label>Email: </label></b><input autocomplete = 'off' type = 'email' name = 'email' value = ". $row['hospital_email']."></p>";
                                 echo "<p><b><label>Phone Number: </label></b><input autocomplete = 'off' type = 'number' min = 0 name = 'phoneNo' value = ". $row['hospital_phoneNo']."></p>";
                                 echo "<div style = 'text-align:center'>";?>

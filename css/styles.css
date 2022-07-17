@@ -22,6 +22,10 @@ form{
     margin-top:37px;
     margin-bottom: 55px;
 }
+#alert_form{
+    margin-top:50px;
+    margin-bottom:120px;
+}
 #drivehospitalview{
     margin-top:20px;
     margin-bottom:275px;
@@ -173,11 +177,12 @@ footer{
     padding: 0;
 }
 .sidenav {
-    height: 100%;
+    overflow-y: scroll;
+    top: 0;
+    bottom: 0;
     width: 250px;
     position: fixed;
     z-index: 1;
-    top: 0;
     left: 0;
     background-color: #fff;
     overflow-x: auto;
@@ -188,7 +193,7 @@ footer{
 }
   
 .sidenav a {
-    padding: 12px 8px 5px 16px;
+    padding: 12px 8px 10px 16px;
     text-decoration: none;
     font-size: 20px;
     color: #000;
@@ -247,4 +252,9 @@ footer{
   }
   #dash{
     border-right:solid whitesmoke;
+  }
+  .contact_form{
+    border:solid;
+    margin-left:50px;
+    margin-top:50px;
   }

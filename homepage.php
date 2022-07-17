@@ -1,5 +1,7 @@
 <?php
 session_start()??null;
+$id = $_SESSION['id']??null;
+
 ?>
 
 <!DOCTYPE HTML>
@@ -30,8 +32,9 @@ session_start()??null;
                   </ul>
               <a id="nav-pages" href="login.php">Login</a>
               <a id="nav-pages" href="blood_drive/viewDrivesAsUnregisteredUser.php">Blood Drives</a> 
-              <a id="nav-pages" href="#">Eligibility Requirements</a>
-              <a id="nav-pages" href="#" >Contact Us</a>
+              <a id="nav-pages" href="donation_requirements.php">Eligibility Requirements</a>
+              <a id="nav-pages" href="contact_us.php" >Contact Us</a>
+             
 </div>  
     </nav>
 
@@ -278,10 +281,8 @@ session_start()??null;
   <footer class="py-3 ">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
       <li class="nav-item"><a href="homepage.php" class="nav-link px-2 text-white">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Hospitals</a></li>
+      <li class="nav-item"><a href="RegisteredHospitals.php" class="nav-link px-2 text-white">Hospitals</a></li>
       <li class="nav-item"><a href="blood_drive/viewDrivesAsUnregisteredUser.php" class="nav-link px-2 text-white">Blood drives</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-white">About</a></li>
     </ul>
     <p class="text-center">&#169; Copyright. All Rights reserved</p>
   </footer>

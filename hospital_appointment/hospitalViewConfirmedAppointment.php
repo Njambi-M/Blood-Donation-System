@@ -51,6 +51,7 @@ $result = $connection->query($sql);
             <a href="../donate/hospitalViewDonationDetails.php">View donation details</a>
             <a href="../donate/hospitalViewDonations.php">View donations</a>
             <a href="../test_results/HospitalViewReleasedResults.php">View Blood Test Results</a>
+            <a href="../hospital/requestBlood.php">Send alert for donation</a>
         </div>
         <main class="main">
             <br><br><br>

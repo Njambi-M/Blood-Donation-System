@@ -1,31 +1,26 @@
 <?php
 session_start()??null;
-
-include('../connection/connect.php');
-
-$id = $_SESSION['id']??null;
-
-$sql = "SELECT * FROM donation WHERE hospital_id= $id AND results_status='pending' ";
-$result = $connection->query($sql);   
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Donor Blood details</title>
+        <title>Request Donors</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <link href = "https://code.jquery.com/ui/1.10.4/themes/blitzer/jquery-ui.css" rel = "stylesheet">
         <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
         <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+        <script type="text/javascript" src = "../scripts/validate.js"></script>
         <link href = "../css/styles.css" rel = "stylesheet">
-        <link rel="shortcut icon" href="../images/Logo.png" type="image/x-icon">
+        <link rel="shortcut icon" href="..\images\Logo.png" type="image/x-icon">
 
        
     </head>
     <body>
+    <script src = 'https://cdn.jsdelivr.net/npm/jquery-datetimepicker@2.5.21/build/jquery.datetimepicker.full.min.js'></script>
         <header>     
-        <nav>
+            <nav style = 'position:fixed'>
             <img id="logo" src="../images/Logo.png" width="80"height="80"> 
             <a href="../hospital_page.php" style="margin-left:15px;">Home</a> 
 
@@ -35,7 +30,7 @@ $result = $connection->query($sql);
                 </svg>&nbsp;<?php echo $_SESSION['name']??null;?></a>
 
                <ul class="dropdown-menu" aria-labelledby="user">
-                    <li><a id = 'user_profile'class="dropdown-item" href="../hospital/hospital_profile.php">My Profile</a></li>
+                    <li><a id = 'user_profile'class="dropdown-item" href="hospital_profile.php">My Profile</a></li>
                     <li><a id = 'log_out' class="dropdown-item" href="../connection/logout.php">Log Out</a></li>
                 </ul>
             </nav>
@@ -46,69 +41,35 @@ $result = $connection->query($sql);
             <a href="../blood_drive/hospital_drive.php">Drive bookings and donations</a>
             <a href="../hospital_appointment/hospitalViewPendingAppointment.php">Pending hospital appointments</a>
             <a href="../hospital_appointment/hospitalViewConfirmedAppointment.php">Confirmed hospital appointments</a>
-            <a href="hospitalViewDonationDetails.php">View donation details</a>
-            <a href="hospitalViewDonations.php">View donations</a>
+            <a href="../donate/hospitalViewDonationDetails.php">View donation details</a>
+            <a href="../donate/hospitalViewDonations.php">View donations</a>
             <a href="../test_results/HospitalViewReleasedResults.php">View Blood Test Results</a>
-            <a href="../hospital/requestBlood.php">Send alert for donation</a>
+            <a href="requestBlood.php">Send alert for donation</a>
         </div>
-        <main class="main">
-            <br><br><br>
+        <main class = 'main'>
+            <br/><br/><br/><br/>
             <div class="container">
                 <div class="row">
                     <div class="col"></div>
-                    <div id = 'confirmedAppointments'class="col-md-auto box-shadow">
-                                
-                        <?php
-                        if (mysqli_num_rows($result) > 0)
-                        {?>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Donation ID</th>
-                                        <th>Blood Details ID</th>
-                                        <th>Donation Date</th>
-                                        <th>Results</th>
-                                        <th>Action</th>
-                                        
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <tr><?php
-                            while($row = mysqli_fetch_assoc($result))
-                            {
-
-                                echo "<td>".$row['donation_id']."</td>";
-                                echo "<td>".$row['blood_details_id']."</td>";
-                                echo "<td>".$row['donation_date']."</td>";
-                                echo "<td>".$row['results_status']."</td>";
-                            
-                                    
-                                echo "<td><a id='buttonconfirm' class='btn btn-light' href=../test_results/enterResults.php?donation_id=" .$row['donation_id']. ">Enter Blood Test Results</a>" . "</td>";
-                                ?>
-                                </tr>
-                                <?php
-                            }?>
-                        </tbody>
-                        </table><br/>
-                        <?php
-                        }else {
-                           ?><script>alert('No donations have been carried out');window.location.href = '../donate/hospitalViewDonationDetails.php';</script>
-                        <?php
-                        }?>
-
-                    </div><div class="col"></div>
-                    </div>
+                    <div class="col-md-auto">
+                        <form class = 'box-shadow' id = 'alert_form' method = 'post' action = '../connection/send_alert.php'>
+                            <h4>Request Donation</h4><br/>
+                            <label>Subject</label><br><input value = "Blood Appeal" name = "subject" type = "text"><br/><br/>
+                            <label>Message</label><br/>
+                            <textarea rows = 7 cols = 80 name = "message" type = "text">This is a kind request to donate at <?php echo $_SESSION['name'];?>. We are experiencing shortage of blood and are in urgent need of the same. Any donation made will be highly appreciated. Thank you.</textarea>
                            
-               
-                
+                            <br/><br/>
+                            <input id = 'submit'type = 'submit' name = 'send_alert' value = 'Send Request'>
+                        </form>
+                    </div>
+                    <div class="col"></div>
+                </div>
             </div>
-            
+            <script src = '../scripts/date.js'></script>
         </main>
         <footer class = 'sidenav_footer' style="margin-top:24px;">
             <p>&#169; Copyright. All Rights reserved</p>
         </footer>
-      
     </body>
     
 </html>
