@@ -19,8 +19,8 @@ if(isset($_POST['send_alert'])){
                     $result_donor = $connection->query($sql_donor);
                     if (mysqli_num_rows($result_donor) > 0){
                         while($row_donor = mysqli_fetch_assoc($result_donor)){
-                           // $to_email = $row_donor['donor_email'];
-                            $to_email = "mmuthiore@gmail.com";
+                            $to_email = $row_donor['donor_email'];
+                           // $to_email = "mmuthiore@gmail.com";
                             $subject = $_POST['subject'];
                             $body = $_POST['message'];
                             $headers = "From: bloodaid1@gmail.com";

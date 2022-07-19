@@ -20,9 +20,10 @@ if ($result = $connection->query($sqldonate))
     while($row = mysqli_fetch_assoc($result))
     { 
        
-    if($row['time_apart'] < 3) {
+    if($row['time_apart'] > 3) {
  $sql = "INSERT INTO drive_booking(donor_id, blood_drive_id) VALUES('$user_id', '$drive_id')";
-        
+
+       // echo $row['time_apart'];
     if ($connection->query($sql))
     {
         echo '<script>alert("Registration successful! See you then."); window.location.href ="../blood_drive/driveDonorView.php" </script>';

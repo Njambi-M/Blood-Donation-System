@@ -6,7 +6,7 @@ include('../connection/connect.php');
 $id = $_SESSION['id'];
 $sqldrive = "SELECT blood_drive.blood_drive_id, blood_drive.blood_drive_name, blood_drive.blood_drive_location, 
 blood_drive.date_from, blood_drive.date_to, drive_booking.* FROM drive_booking LEFT JOIN
-blood_drive ON blood_drive.blood_drive_id = drive_booking.blood_drive_id WHERE donor_id = '$id' AND `status`='donated' ";
+blood_drive ON blood_drive.blood_drive_id = drive_booking.blood_drive_id WHERE donor_id = '$id' AND `status`='seen' ";
 $resultdrive = $connection->query($sqldrive);
 ?>
 

@@ -18,7 +18,7 @@ if ($result = $connection->query($sqldonate))
     while($row = mysqli_fetch_assoc($result))
     { 
        
-    if($row['time_apart'] < 3) {
+    if($row['time_apart'] > 3) {
         
         $hospital_id= $_POST['hospital'];
         $date= $_POST['app_date'];

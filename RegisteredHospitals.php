@@ -65,7 +65,7 @@ $result = $connection->query($sql);
     
           <div class="col d-flex align-items-start border-right">
             <div>
-              <h4 class="fw-bold mb-0"><?php echo $row['hospital_name']?></h4>
+              <h4 class="fw-bold mb-0"><?php echo $row['hospital_name']?></h4><br>
               <p><?php echo $row['hospital_location']?></p>
               <p><?php echo $row['hospital_email']?></p>
               <p><?php echo $row['hospital_phoneNo']?></p>

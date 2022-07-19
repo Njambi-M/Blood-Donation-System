@@ -17,6 +17,16 @@ password: LucyKarim1
 email address: sgitau@gmail.com
 password: SusanGit
 
+email address: mmuthiore@outlook.com
+password: Maria123
+
+email address: mmuthiore@gmail.com
+password: Maria123
+
+email address: nkathajoy36@gmail.com
+password: Joy123
+
+
 Hospital:
 email address: nairobiwest@hospital.com
 password: nairobiWest

@@ -43,13 +43,12 @@ if ($connection->query($sql))
                         $result_donor = $connection->query($sql_donor);
                         if (mysqli_num_rows($result_donor) > 0){
                             while($row_donor = mysqli_fetch_assoc($result_donor)){
-                               // $to_email = $row_donor['donor_email'];
+                                $to_email = $row_donor['donor_email'];
                                 
                                //  $to_email = "nkathajoy36@gmail.com";
-                               $to_email = "mmuthiore@gmail.com";
+                             //  $to_email = "mmuthiore@gmail.com";
                                 $subject = "Released Test Results";
-                                $body = "Hello. Thank you for donating blood. This is to inform you that the test results are now released and you can now view them in your donor dashboard. We say asante sana!
-                                For any concerns, contact the respective hospital in charge of your donation.";
+                                $body = "Hello. Thank you for donating blood. This is to inform you that the test results are now released and you can now view them in your donor dashboard. We say asante sana! For any concerns, contact the respective hospital in charge of your donation.";
                                 $headers = "From: bloodaid1@gmail.com";
 
                                 if (mail($to_email, $subject, $body, $headers)) {

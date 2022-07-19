@@ -116,7 +116,6 @@ $result = $connection->query($sql);
                                 echo "<p><b><label>Phone Number: </label></b><input autocomplete = 'off' type = 'number' min = 0 name = 'phoneNo' value = ". $row['donor_phoneNo']."></p>";
                                 echo "<p><b><label>Gender: </label></b><input autocomplete = 'off' type = 'text' name = 'gender' value = '". $row['gender']."'></p>";
                                 echo "<p><b><label>Date of Birth: </label></b><input autocomplete = 'off' type = 'date' name = 'dob' value = '". $row['date_of_birth']."'></p>";
-                                echo "<p><b><label>Password: </label></b><input autocomplete = 'off' type = 'password' name = 'pass' value = '". $row['donor_password']."'></p>";
                                echo "<div style = 'text-align:center'>";?>
                                 <a href = ''><button id = 'form-btn' class = 'btn btn-dark'>Update</button></a></div><?php
                             }

@@ -6,7 +6,7 @@ include('../connection/connect.php');
 $id = $_SESSION['id']??null;
 
 $sql = "SELECT donor.donor_id, donor.first_name, donor.last_name, donor.donor_phoneNo, hospital_appointment.*
- FROM hospital_appointment LEFT JOIN donor ON donor.donor_id = hospital_appointment.donor_id WHERE hospital_id= $id AND `status` = 'seen' AND blood_details_status='pending' ORDER BY `date`, `time` ";
+ FROM hospital_appointment LEFT JOIN donor ON donor.donor_id = hospital_appointment.donor_id WHERE hospital_id= $id AND `status` = 'seen' ORDER BY `date`, `time` ";
 $result = $connection->query($sql);
     
 ?>
@@ -93,8 +93,11 @@ $result = $connection->query($sql);
                                 echo "<td>".$row['time']."</td>";
                                 echo "<td>".$row['status']."</td>";
                             
+                                if($row['blood_details_status']=='pending'){
+                                    echo "<td><a id='buttonconfirm' class='btn btn-light' href=../donate/donationDetails.php?donor_id=" .$row['donor_id']. ">Enter Eligibility Details</a>" . "</td>";
+
+                                }
                                     
-                                echo "<td><a id='buttonconfirm' class='btn btn-light' href=../donate/donationDetails.php?donor_id=" .$row['donor_id']. ">Enter Eligibility Details</a>" . "</td>";
                                 ?>
                                 </tr>
                                 <?php

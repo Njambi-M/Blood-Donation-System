@@ -33,8 +33,7 @@ $result = $connection->query($sql);
         <nav style = 'position:fixed;'>
             <img id="logo" src="../images/Logo.png" width="80"height="80"> 
             <a href="../hospital_page.php" style="margin-left:15px;">Home</a> 
-            <a href="../donation_requirements.php" style="margin-left:15px;">Eligibility</a> 
-            <a href="../RegisteredHospitals.php" style="margin-left:15px;">Partnered Hospitals</a> 
+
 
             
 
@@ -95,7 +94,10 @@ $result = $connection->query($sql);
                                     <td>".$drive_id."</td>
                                     <td>".$row['blood_drive_name']."</td>
                                     <td>".$row['status']."</td>
-                                    <td><a id='buttonconfirm' class='btn btn-light' href=../connection/confirmDriveDonation.php?id=" .$row['drive_booking_id']. ">Arrived</a>" . "</td>
+
+                                  <td><a id='buttonconfirm' class='btn btn-light' href=../connection/confirmDriveDonation.php?id=" .$row['drive_booking_id']. ">Arrived</a>" . "</td>
+
+                                
                                 </tr>";
                               
                             }?>

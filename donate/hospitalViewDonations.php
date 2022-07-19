@@ -5,7 +5,7 @@ include('../connection/connect.php');
 
 $id = $_SESSION['id']??null;
 
-$sql = "SELECT * FROM donation WHERE hospital_id= $id AND results_status='pending' ";
+$sql = "SELECT * FROM donation WHERE hospital_id= $id ";
 $result = $connection->query($sql);   
 ?>
 <!DOCTYPE html>
@@ -82,9 +82,12 @@ $result = $connection->query($sql);
                                 echo "<td>".$row['blood_details_id']."</td>";
                                 echo "<td>".$row['donation_date']."</td>";
                                 echo "<td>".$row['results_status']."</td>";
-                            
-                                    
+
+                            if($row['results_status']=='pending'){
                                 echo "<td><a id='buttonconfirm' class='btn btn-light' href=../test_results/enterResults.php?donation_id=" .$row['donation_id']. ">Enter Blood Test Results</a>" . "</td>";
+
+                            }
+                                    
                                 ?>
                                 </tr>
                                 <?php
