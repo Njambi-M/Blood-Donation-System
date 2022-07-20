@@ -5,7 +5,7 @@ include('../connection/connect.php');
 
 $id = $_SESSION['id']??null;
 
-$sql = "SELECT * FROM donation WHERE hospital_id= $id ";
+$sql = "SELECT * FROM donation WHERE hospital_id= $id ORDER BY `donation_id` DESC";
 $result = $connection->query($sql);   
 ?>
 <!DOCTYPE html>

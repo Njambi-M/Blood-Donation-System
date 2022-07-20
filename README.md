@@ -34,6 +34,12 @@ password: nairobiWest
 email address: meridian@hospital.com
 password: meridian
 
+email address: NairobiHospital@hospital.com
+password: nairobiHos123
+
+email address: coptic@hospital.com
+password: coptic1
+
 Email Set-up localhost
 https://github.com/ravisingh2811/Send-Mail-From-Localhost-setup/blob/main/mail%20setup.txt
 https://stackoverflow.com/questions/72577189/gmail-smtp-server-stopped-working-as-it-no-longer-support-less-secure-apps

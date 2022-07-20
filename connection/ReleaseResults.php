@@ -49,7 +49,9 @@ if ($connection->query($sql))
                              //  $to_email = "mmuthiore@gmail.com";
                                 $subject = "Released Test Results";
                                 $body = "Hello. Thank you for donating blood. This is to inform you that the test results are now released and you can now view them in your donor dashboard. We say asante sana! For any concerns, contact the respective hospital in charge of your donation.";
-                                $headers = "From: bloodaid1@gmail.com";
+                                $headers = "From: Blood Aid <bloodaid1@gmail.com>";
+                                $headers .= "Reply-To: bloodaid1@gmail.com \r\n";
+
 
                                 if (mail($to_email, $subject, $body, $headers)) {
                                     echo "<script>alert('Email successfully sent to $to_email...'); window.location.href='../hospital_page.php';</script>";
