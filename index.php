@@ -24,7 +24,7 @@ $id = $_SESSION['id']??null;
     <nav class="fixed-navbar">
     <img id="logo" src="images/Logo.png" width="100"height="100"> 
               <div class="nav-links">
-                <a id="nav-pages" href="homepage.php" style="color:black;">Home</a>
+                <a id="nav-pages" href="index.php" style="color:black;">Home</a>
                   <a id="nav-pages" href="#" class="dropdown-toggle"  data-bs-toggle="dropdown">Register as:</a>
                   <ul class="dropdown-menu">
                       <li><a class="dropdown-item" href="donor_registration.php">Donor</a></li>
