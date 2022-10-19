@@ -28,7 +28,7 @@
             }
             
          }else{
-             echo "<script>window.location.href='../homepage.php';alert('Sorry. You must be between 16 and 65 years to be able to donate.'); </script>";
+             echo "<script>window.location.href='../index.php';alert('Sorry. You must be between 16 and 65 years to be able to donate.'); </script>";
          }
         
     }
