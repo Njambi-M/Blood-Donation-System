@@ -21,7 +21,7 @@ session_start()??null;
         <header>     
             <nav>
             <img id="logo" src="images/Logo.png" width="80"height="80"> 
-            <a href="homepage.php" style="margin-left:15px;">Home</a> 
+            <a href="index.php" style="margin-left:15px;">Home</a> 
 
             </nav>
         </header>
