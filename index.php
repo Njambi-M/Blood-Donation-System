@@ -274,7 +274,7 @@ $id = $_SESSION['id']??null;
 <div class="container">
   <footer class="py-3 ">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="homepage.php" class="nav-link px-2 text-white">Home</a></li>
+      <li class="nav-item"><a href="index.php" class="nav-link px-2 text-white">Home</a></li>
       <li class="nav-item"><a href="RegisteredHospitals.php" class="nav-link px-2 text-white">Hospitals</a></li>
       <li class="nav-item"><a href="blood_drive/viewDrivesAsUnregisteredUser.php" class="nav-link px-2 text-white">Blood drives</a></li>
     </ul>
