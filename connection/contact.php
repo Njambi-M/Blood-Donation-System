@@ -6,7 +6,7 @@
 $headers .= "Reply-To: ".$_POST["email"]."\r\n";
 
   if (mail($to_email, $subject, $body, $headers)) {
-      echo "<script>alert('Email successfully sent);window.location.href ='../homepage.php';</script>";
+      echo "<script>alert('Email successfully sent);window.location.href ='../index.php';</script>";
   } else {
       echo "<script>alert('Email sending failed...');window.location.href ='../contact_us.php';</script>";
   }
